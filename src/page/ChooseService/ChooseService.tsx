@@ -83,6 +83,15 @@ export const ChooseService: React.FC = () => {
                     <Col xl={3} lg={3} md={3} sm={3}>
                         <PassportCardComponent imageSrc={PassportImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Start New Application for your Visa" buttonText="Get Served" onClick={() => navigoter('/NewVisaApplicationPage')}></PassportCardComponent>
                     </Col>
+                    <Col xl={3} lg={3} md={3} sm={3}>
+                        <PassportCardComponent imageSrc={PassportImage} bodyText="E Health Systems." bodyTitle="E-Health" buttonText="Comming Soon" onClick={() => navigoter('/')}></PassportCardComponent>
+                    </Col>
+                    <Col xl={3} lg={3} md={3} sm={3}>
+                        <PassportCardComponent imageSrc={PassportImage} bodyText="National Identifcation Card for citizens." bodyTitle="National ID" buttonText="Comming Soon" onClick={() => navigoter('/')}></PassportCardComponent>
+                    </Col>
+                    <Col xl={3} lg={3} md={3} sm={3}>
+                        <PassportCardComponent imageSrc={PassportImage} bodyText="Justice System Components." bodyTitle="E-Justice System" buttonText="Comming Soon" onClick={() => navigoter('/')}></PassportCardComponent>
+                    </Col>
 
                     <Col xl={1} lg={1} md={1} sm={1}></Col>
                 </Row>
