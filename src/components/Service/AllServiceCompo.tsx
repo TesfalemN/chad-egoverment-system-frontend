@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Img1 from "assets/images/features/img-1.png";
 import HomeUrl from "assets/images/home-border.png";
 
-const ServiceList = () => {
+const AllServiceCompo = () => {
   const [state, setState] = useState({
     Servicelist: [
       {
@@ -146,15 +146,177 @@ const ServiceList = () => {
         ],
       },
       {
+        id: 5,
+        title: "E Health",
+        description:
+          "E Health System for better health for Chad Citizens",
+        titlePrimary: false,
+        icon: "",
+        url: "/Login",
+        child: [
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+        
+        ],
+      },
+      {
+        id: 5,
+        title: "E Health",
+        description:
+          "E Health System for better health for Chad Citizens",
+        titlePrimary: false,
+        icon: "",
+        url: "/Login",
+        child: [
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+        
+        ],
+      },
+      {
+        id: 5,
+        title: "E Health",
+        description:
+          "E Health System for better health for Chad Citizens",
+        titlePrimary: false,
+        icon: "",
+        url: "/Login",
+        child: [
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+        
+        ],
+      },
+      {
+        id: 5,
+        title: "E Health",
+        description:
+          "E Health System for better health for Chad Citizens",
+        titlePrimary: false,
+        icon: "",
+        url: "/Login",
+        child: [
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+        
+        ],
+      },
+      {
+        id: 5,
+        title: "E Health",
+        description:
+          "E Health System for better health for Chad Citizens",
+        titlePrimary: false,
+        icon: "",
+        url: "/Login",
+        child: [
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+        
+        ],
+      },
+      {
+        id: 5,
+        title: "E Health",
+        description:
+          "E Health System for better health for Chad Citizens",
+        titlePrimary: false,
+        icon: "",
+        url: "/Login",
+        child: [
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+          {
+            btitle: "Health",
+            title: "#",
+            icon: "mdi-checkbox-marked-circle text-success",
+          },
+        
+        ],
+      },
+      
+      {
         id: 6,
         title: "More Services",
         description:
           "Do You want to see more Services, Click in the link below",
         titlePrimary: false,
         icon: "",
-        url: "/AllService",
-        child: [
-          
+        url: "/Login",
+        child: [         
           {
             btitle: "Do You want to see more Services, Click in the link below",
        
@@ -168,6 +330,48 @@ const ServiceList = () => {
   });
   return (
     <>
+            <section className="section" id="servicelist">
+        <Container>
+            <h2>Services provided by Chad E-Government System</h2>
+          <Row className="mt-5 pt-4">
+         
+            {/* Render Pricing items */}
+            {state.Servicelist.map((item: any, key: any) => (
+              <Col lg="4" key={key}>
+                <div className="pricing-box mt-4">
+                  {
+                   
+                  }
+
+                  <i className={"h1 mdi " + item.icon}></i>
+                  {item.titlePrimary === true ? (
+                    <h4 className="f-20 text-primary">{item.title}</h4>
+                  ) : (
+                    <h4 className="f-20">{item.title}</h4>
+                  )}
+
+                  <div className="mt-4 pt-2">
+                    <p className="mb-2 f-18">Features</p>
+                    {item.child.map((linkItem: any, linkkey: any) => (
+                      <p className="mb-2" key={linkkey}>
+                        <i
+                          className={"mdi " + linkItem.icon + " f-18 mr-2"}
+                        ></i>
+                        <b>{linkItem.btitle}</b> {linkItem.title}
+                      </p>
+                    ))}
+                  </div>
+                  <div className="mt-4 pt-3">
+                    <Link to={item.url} className="btn btn-primary btn-rounded">
+                      Get Served
+                    </Link>
+                  </div>
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
       <section className="section bg-light bg-features">
         <Container>
           <Row className="align-items-center">
@@ -199,52 +403,7 @@ const ServiceList = () => {
           </Row>
         </Container>
       </section>
-      <section className="section" id="servicelist">
-        <Container>
-       
-          <Row className="mt-5 pt-4">
-            {/* Render Pricing items */}
-            {state.Servicelist.map((item: any, key: any) => (
-              <Col lg="4" key={key}>
-                <div className="pricing-box mt-4">
-                  {
-                    <div className="pricing-badge">
-                      <span className="badge">Featured</span>{" "}
-                    </div>
-                  }
-
-                  <i className={"h1 mdi " + item.icon}></i>
-                  {item.titlePrimary === true ? (
-                    <h4 className="f-20 text-primary">{item.title}</h4>
-                  ) : (
-                    <h4 className="f-20">{item.title}</h4>
-                  )}
-
-                  <div className="mt-4 pt-2">
-                    <p className="mb-2 f-18">Features</p>
-                    {item.child.map((linkItem: any, linkkey: any) => (
-                      <p className="mb-2" key={linkkey}>
-                        <i
-                          className={"mdi " + linkItem.icon + " f-18 mr-2"}
-                        ></i>
-                        <b>{linkItem.btitle}</b> {linkItem.title}
-                      </p>
-                    ))}
-                  </div>
-
-                  <div className="mt-4 pt-3">
-                    <Link to={item.url} className="btn btn-primary btn-rounded">
-                      Get Served
-                    </Link>
-                  </div>
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
     </>
   );
 };
-
-export default ServiceList;
+export default AllServiceCompo;

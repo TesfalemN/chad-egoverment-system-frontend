@@ -1,16 +1,26 @@
 import PassportNavBarComponent from "components/Passport/PassportNavBarComponent";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Stepper } from 'react-form-stepper';
 import { Col, Row, FormGroup, FormLabel, FormControl, Button, Form } from 'react-bootstrap';
 import { CustomCard } from "components/shared/Card";
-import { bool, boolean } from "yup";
+import { bool, boolean, string } from "yup";
 import { idText } from "typescript";
 import PassportApplicationRequest from "models/passport/PassportApplicationRequest";
 import { applyPassport } from "service/PassportService";
 import { useNavigate } from "react-router-dom";
+import { MasterDataContext } from "App";
+import MasterDataResponse from "models/masterData/masterData";
 
 export const PassportNewApplicationPage: React.FC = () => {
     const navigoter = useNavigate();
+    const { masterData } = useContext(MasterDataContext);
+
+    const [stateList, setStateList] = useState([
+        {
+            name: "",
+            value: ""
+        }
+    ]);
 
     const [userState, setUserState] = useState({
         stepperList: [
@@ -36,7 +46,7 @@ export const PassportNewApplicationPage: React.FC = () => {
             {
                 name: 'First Name',
                 id: '',
-                type: '',
+                type: 'text',
                 disabled: false,
                 formType: "input",
                 value: '',
@@ -47,7 +57,7 @@ export const PassportNewApplicationPage: React.FC = () => {
             {
                 name: 'Middle Name',
                 id: '',
-                type: '',
+                type: 'text',
                 value: '',
                 formType: "input",
                 disabled: false, onChange: (value: string, index: number) => {
@@ -57,7 +67,7 @@ export const PassportNewApplicationPage: React.FC = () => {
             {
                 name: 'last Name',
                 id: '',
-                type: '',
+                type: 'text',
                 value: '',
                 formType: "input",
                 disabled: false, onChange: (value: string, index: number) => {
@@ -78,7 +88,7 @@ export const PassportNewApplicationPage: React.FC = () => {
             {
                 name: 'Occupation',
                 id: '',
-                type: '',
+                type: 'text',
                 value: '',
                 formType: "input",
                 disabled: false, onChange: (value: string, index: number) => {
@@ -88,9 +98,39 @@ export const PassportNewApplicationPage: React.FC = () => {
             {
                 name: 'Hair Color',
                 id: '',
-                type: '',
+                type: 'text',
                 value: '',
                 formType: "select",
+                options: [
+                    {
+                        value: "Black",
+                        name: "Black",
+                    },
+                    {
+                        value: "Brown",
+                        name: "Brown",
+                    },
+                    {
+                        value: "Blond",
+                        name: "Blond",
+                    },
+                    {
+                        value: "Auburn",
+                        name: "Auburn",
+                    },
+                    {
+                        value: "Red",
+                        name: "Red",
+                    },
+                    {
+                        value: "Grey",
+                        name: "Grey",
+                    },
+                    {
+                        value: "White",
+                        name: "White",
+                    },
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updatePersonalInformationInput(value, index)
                 }
@@ -98,9 +138,19 @@ export const PassportNewApplicationPage: React.FC = () => {
             {
                 name: 'Gender',
                 id: '',
-                type: '',
+                type: 'text',
                 value: '',
-                formType: "input",
+                formType: "select",
+                options: [
+                    {
+                        value: "Male",
+                        name: "Male",
+                    },
+                    {
+                        value: "Female",
+                        name: "Female",
+                    },
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updatePersonalInformationInput(value, index)
                 }
@@ -110,15 +160,37 @@ export const PassportNewApplicationPage: React.FC = () => {
                 id: '',
                 type: '',
                 value: '',
-                formType: "input",
+                formType: "select",
+                options: [
+                    {
+                        value: "Single",
+                        name: "Single",
+                    },
+                    {
+                        value: "Married",
+                        name: "Married",
+                    },
+                    {
+                        value: "Widowed",
+                        name: "Widowed",
+                    },
+                    {
+                        value: "Searated",
+                        name: "Separated",
+                    },
+                    {
+                        value: "Divorced",
+                        name: "Divorced",
+                    },
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updatePersonalInformationInput(value, index)
                 }
             },
             {
-                name: 'Height',
+                name: 'Height (in CM)',
                 id: '',
-                type: '',
+                type: 'number',
                 value: '',
                 formType: "input",
                 disabled: false, onChange: (value: string, index: number) => {
@@ -131,7 +203,25 @@ export const PassportNewApplicationPage: React.FC = () => {
                 id: '',
                 type: '',
                 value: '',
-                formType: "input",
+                formType: "select",
+                options: [
+                    {
+                        value: "Black",
+                        name: "Black",
+                    },
+                    {
+                        value: "Brown",
+                        name: "Brown",
+                    },
+                    {
+                        value: "Blue",
+                        name: "Blue",
+                    },
+                    {
+                        value: "Other",
+                        name: "Other",
+                    },
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updatePersonalInformationInput(value, index)
                 }
@@ -142,8 +232,10 @@ export const PassportNewApplicationPage: React.FC = () => {
             {
                 name: 'Phone Number',
                 id: '',
-                type: '',
+                type: 'tel',
                 value: '',
+                formType: "input",
+                options: [],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateContactInformationInput(value, index)
                 }
@@ -152,8 +244,10 @@ export const PassportNewApplicationPage: React.FC = () => {
             {
                 name: 'Email Addresse',
                 id: '',
-                type: '',
+                type: 'email',
                 value: '',
+                formType: "input",
+                options: [],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateContactInformationInput(value, index)
                 }
@@ -162,8 +256,10 @@ export const PassportNewApplicationPage: React.FC = () => {
             {
                 name: 'Birth Date',
                 id: '',
-                type: '',
+                type: 'date',
                 value: '',
+                formType: "input",
+                options: [],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateContactInformationInput(value, index)
                 }
@@ -173,6 +269,13 @@ export const PassportNewApplicationPage: React.FC = () => {
                 id: '',
                 type: '',
                 value: '',
+                formType: "input",
+                options: [
+                    {
+                        value: "",
+                        name: ""
+                    }
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateContactInformationInput(value, index)
                 }
@@ -183,6 +286,8 @@ export const PassportNewApplicationPage: React.FC = () => {
                 id: '',
                 type: '',
                 value: '',
+                formType: "input",
+                options: [],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateContactInformationInput(value, index)
                 }
@@ -195,16 +300,11 @@ export const PassportNewApplicationPage: React.FC = () => {
                 id: '',
                 type: '',
                 value: '',
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateHomeInformationInput(value, index)
-                }
-
-            },
-            {
-                name: 'City',
-                id: '',
-                type: '',
-                value: '',
+                formType: "select",
+                options: masterData.regions[0]?.regions?.map((e) => ({
+                    name: e.name,
+                    value: e.code
+                })),
                 disabled: false, onChange: (value: string, index: number) => {
                     updateHomeInformationInput(value, index)
                 }
@@ -215,6 +315,26 @@ export const PassportNewApplicationPage: React.FC = () => {
                 id: '',
                 type: '',
                 value: '',
+                formType: "input",
+                disabled: false,
+                options: stateList,
+                onChange: (value: string, index: number) => {
+                    updateHomeInformationInput(value, index)
+                }
+
+            },
+            {
+                name: 'City',
+                id: '',
+                type: '',
+                value: '',
+                formType: "input",
+                options: [
+                    {
+                        value: "Black",
+                        name: "Black",
+                    },
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateHomeInformationInput(value, index)
                 }
@@ -225,6 +345,13 @@ export const PassportNewApplicationPage: React.FC = () => {
                 id: '',
                 type: '',
                 value: '',
+                formType: "input",
+                options: [
+                    {
+                        value: "Black",
+                        name: "Black",
+                    },
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateHomeInformationInput(value, index)
                 }
@@ -235,6 +362,13 @@ export const PassportNewApplicationPage: React.FC = () => {
                 id: '',
                 type: '',
                 value: '',
+                formType: "input",
+                options: [
+                    {
+                        value: "Black",
+                        name: "Black",
+                    },
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateHomeInformationInput(value, index)
                 }
@@ -245,6 +379,13 @@ export const PassportNewApplicationPage: React.FC = () => {
                 id: '',
                 type: '',
                 value: '',
+                formType: "input",
+                options: [
+                    {
+                        value: "Black",
+                        name: "Black",
+                    },
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateHomeInformationInput(value, index)
                 }
@@ -255,6 +396,13 @@ export const PassportNewApplicationPage: React.FC = () => {
                 id: '',
                 type: '',
                 value: '',
+                formType: "input",
+                options: [
+                    {
+                        value: "Black",
+                        name: "Black",
+                    },
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateHomeInformationInput(value, index)
                 }
@@ -267,6 +415,11 @@ export const PassportNewApplicationPage: React.FC = () => {
                 id: '',
                 type: '',
                 value: '',
+                formType: "select",
+                options: masterData.regions[0]?.regions?.map((e) => ({
+                    name: e.name,
+                    value: e.code
+                })),
                 disabled: false, onChange: (value: string, index: number) => {
                     updateOfficeInformationInput(value, index)
                 }
@@ -277,6 +430,13 @@ export const PassportNewApplicationPage: React.FC = () => {
                 id: '',
                 type: '',
                 value: '',
+                formType: "input",
+                options: [
+                    {
+                        value: "Black",
+                        name: "Black",
+                    },
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateOfficeInformationInput(value, index)
                 }
@@ -285,8 +445,15 @@ export const PassportNewApplicationPage: React.FC = () => {
             {
                 name: 'Appointment Date',
                 id: '',
-                type: '',
+                type: 'date',
                 value: '',
+                formType: "input",
+                options: [
+                    {
+                        value: "Black",
+                        name: "Black",
+                    },
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateOfficeInformationInput(value, index)
                 }
@@ -295,8 +462,15 @@ export const PassportNewApplicationPage: React.FC = () => {
             {
                 name: 'Appointment Time',
                 id: '',
-                type: '',
+                type: 'time',
                 value: '',
+                formType: "input",
+                options: [
+                    {
+                        value: "Black",
+                        name: "Black",
+                    },
+                ],
                 disabled: false, onChange: (value: string, index: number) => {
                     updateOfficeInformationInput(value, index)
                 }
@@ -313,7 +487,7 @@ export const PassportNewApplicationPage: React.FC = () => {
             ...userState,
             personInformationInputs: updatedData
         })
-        )
+        );
     }
 
     const updateContactInformationInput = (e: string, index: number) => {
@@ -481,11 +655,12 @@ export const PassportNewApplicationPage: React.FC = () => {
                                                         <FormLabel className="contact-lable custom-contact-lable">
                                                             {e.name}
                                                         </FormLabel>
-                                                        <Form.Select aria-label="Default select example">
-                                                            <option>Open this select menu</option>
-                                                            <option value="1">One</option>
-                                                            <option value="2">Two</option>
-                                                            <option value="3">Three</option>
+                                                        <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
+                                                            <>{
+                                                                e.options?.map((item) => {
+                                                                    return <option value={item.value}>{item.name}</option>
+                                                                })
+                                                            }</>
                                                         </Form.Select>
                                                     </FormGroup>
                                                 </Col>
@@ -494,64 +669,124 @@ export const PassportNewApplicationPage: React.FC = () => {
                                 }
                             </>
                             {
-                                userState.stepIndex == 1 ? userState.contactInformationInputs.map((e, index) => (
-                                    <Col lg={3} xl={3} md={3} sm={3} >
-                                        <FormGroup className="mt-3">
-                                            <FormLabel className="contact-lable custom-contact-lable">
-                                                {e.name}
-                                            </FormLabel>
-                                            <FormControl
-                                                name={e.name}
-                                                id={e.id}
-                                                placeholder={e.name}
-                                                className="form-control custom-form-control"
-                                                type={e.type}
-                                                value={e.value}
-                                                onChange={(v) => e.onChange(v.target.value, index)}
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                )) : <></>
+                                userState.stepIndex == 1 ? userState.contactInformationInputs.map((e, index) => {
+                                    switch (e.formType) {
+                                        case "input":
+                                            return <Col lg={3} xl={3} md={3} sm={3} >
+                                                <FormGroup className="mt-3">
+                                                    <FormLabel className="contact-lable custom-contact-lable">
+                                                        {e.name}
+                                                    </FormLabel>
+                                                    <FormControl
+                                                        name={e.name}
+                                                        id={e.id}
+                                                        placeholder={e.name}
+                                                        className="form-control custom-form-control"
+                                                        type={e.type}
+                                                        disabled={e.disabled}
+                                                        value={e.value}
+                                                        onChange={(v) => e.onChange(v.target.value, index)}
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            break;
+                                        case "select":
+                                            return <Col lg={3} xl={3} md={3} sm={3} >
+                                                <FormGroup className="mt-3">
+                                                    <FormLabel className="contact-lable custom-contact-lable">
+                                                        {e.name}
+                                                    </FormLabel>
+                                                    <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
+                                                        <>{
+                                                            e.options?.map((item) => {
+                                                                return <option value={item.value}>{item.name}</option>
+                                                            })
+                                                        }</>
+                                                    </Form.Select>
+                                                </FormGroup>
+                                            </Col>
+                                    }
+                                }) : <></>
                             }
                             {
-                                userState.stepIndex == 2 ? userState.homeInformationInputs.map((e, index) => (
-                                    <Col lg={3} xl={3} md={3} sm={3} >
-                                        <FormGroup className="mt-3">
-                                            <FormLabel className="contact-lable custom-contact-lable">
-                                                {e.name}
-                                            </FormLabel>
-                                            <FormControl
-                                                name={e.name}
-                                                id={e.id}
-                                                placeholder={e.name}
-                                                className="form-control custom-form-control"
-                                                type={e.type}
-                                                value={e.value}
-                                                onChange={(v) => e.onChange(v.target.value, index)}
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                )) : <></>
+                                userState.stepIndex == 2 ? userState.homeInformationInputs.map((e, index) => {
+                                    switch (e.formType) {
+                                        case "input":
+                                            return <Col lg={3} xl={3} md={3} sm={3} >
+                                                <FormGroup className="mt-3">
+                                                    <FormLabel className="contact-lable custom-contact-lable">
+                                                        {e.name}
+                                                    </FormLabel>
+                                                    <FormControl
+                                                        name={e.name}
+                                                        id={e.id}
+                                                        placeholder={e.name}
+                                                        className="form-control custom-form-control"
+                                                        type={e.type}
+                                                        disabled={e.disabled}
+                                                        value={e.value}
+                                                        onChange={(v) => e.onChange(v.target.value, index)}
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            break;
+                                        case "select":
+                                            return <Col lg={3} xl={3} md={3} sm={3} >
+                                                <FormGroup className="mt-3">
+                                                    <FormLabel className="contact-lable custom-contact-lable">
+                                                        {e.name}
+                                                    </FormLabel>
+                                                    <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
+                                                        <>{
+                                                            e.options?.map((item) => {
+                                                                return <option value={item.value}>{item.name}</option>
+                                                            })
+                                                        }</>
+                                                    </Form.Select>
+                                                </FormGroup>
+                                            </Col>
+                                    }
+                                }) : <></>
                             }
                             {
-                                userState.stepIndex == 3 ? userState.officeInformationInputs.map((e, index) => (
-                                    <Col lg={3} xl={3} md={3} sm={3} >
-                                        <FormGroup className="mt-3">
-                                            <FormLabel className="contact-lable custom-contact-lable">
-                                                {e.name}
-                                            </FormLabel>
-                                            <FormControl
-                                                name={e.name}
-                                                id={e.id}
-                                                placeholder={e.name}
-                                                className="form-control custom-form-control"
-                                                type={e.type}
-                                                value={e.value}
-                                                onChange={(v) => e.onChange(v.target.value, index)}
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                )) : <></>
+                                userState.stepIndex == 3 ? userState.officeInformationInputs.map((e, index) => {
+                                    switch (e.formType) {
+                                        case "input":
+                                            return <Col lg={3} xl={3} md={3} sm={3} >
+                                                <FormGroup className="mt-3">
+                                                    <FormLabel className="contact-lable custom-contact-lable">
+                                                        {e.name}
+                                                    </FormLabel>
+                                                    <FormControl
+                                                        name={e.name}
+                                                        id={e.id}
+                                                        placeholder={e.name}
+                                                        className="form-control custom-form-control"
+                                                        type={e.type}
+                                                        disabled={e.disabled}
+                                                        value={e.value}
+                                                        onChange={(v) => e.onChange(v.target.value, index)}
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            break;
+                                        case "select":
+                                            return <Col lg={3} xl={3} md={3} sm={3} >
+                                                <FormGroup className="mt-3">
+                                                    <FormLabel className="contact-lable custom-contact-lable">
+                                                        {e.name}
+                                                    </FormLabel>
+                                                    <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
+                                                        <>{
+                                                            e.options?.map((item) => {
+                                                                return <option value={item.value}>{item.name}</option>
+                                                            })
+                                                        }</>
+                                                    </Form.Select>
+                                                </FormGroup>
+                                            </Col>
+                                    }
+                                }) : <></>
                             }
                         </Row>
                         <br /><br />
@@ -639,8 +874,4 @@ export const PassportNewApplicationPage: React.FC = () => {
         </Row>
 
     </>);
-}
-
-function useHistory() {
-    throw new Error("Function not implemented.");
 }

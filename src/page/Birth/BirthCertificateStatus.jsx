@@ -64,12 +64,16 @@ const BirthCertificateStatus = () => {
                 <strong>
                   {" "}
                   
-                    Your Certificate status is Pendingg
+                    Your Certificate status is Pending
                  
                 </strong>
               </div>
               <div className="flex flex-col justify-center items-center">
-          
+            <img
+              width={200}
+              height={200}
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAACFCAMAAAApQEceAAAAGFBMVEUAJmTGDDD+ywAAF2d1ZlH/1QDXXyfDADEyII2yAAAAjElEQVR4nO3POQEAIAwEsPIU/DtGxC0MiYNUpdbuGepzRyp+iIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIfBp5npFz3HKOnyEAAAAASUVORK5CYII="
+            />
         
             <span style={{ fontSize: "30px", fontWeight: "bold" }}>
               Government of Chad

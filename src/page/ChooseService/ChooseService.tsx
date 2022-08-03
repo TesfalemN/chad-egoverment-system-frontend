@@ -6,6 +6,8 @@ import Col from 'react-bootstrap/Col';
 import '../../assets/css/passport/main.css';
 import { Link, useNavigate } from "react-router-dom";
 import PassportImage from "../../assets/images/chad_passport.png";
+import BusinessImage from "../../assets/images/features/business.jpg";
+import BirthImage from "../../assets/images/features/birth.png";
 import { UserProfileComponent } from "components/ChooseService/ChooseServiceUserProfileComponent";
 import { PassportCardComponent } from "components/ChooseService/ChooseServiceCardComponent";
 
@@ -75,22 +77,13 @@ export const ChooseService: React.FC = () => {
                     &emsp;&emsp;&emsp;&emsp;
                     <Col xl={1} lg={1} md={1} sm={1}></Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyText="Do you want your Business Registered? Provide all requested information and apply." bodyTitle="Start Registering your Business" buttonText="Get Served" onClick={() => navigoter('/Business')}></PassportCardComponent>
+                        <PassportCardComponent imageSrc={BusinessImage} bodyText="Do you want your Business Registered? Provide all requested information and apply." bodyTitle="Start Registering your Business" buttonText="Get Served" onClick={() => navigoter('/Business')}></PassportCardComponent>
                     </Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
                         <PassportCardComponent imageSrc={PassportImage} bodyText="Do you want to secure Chad Passport now? Provide all requested information and apply." bodyTitle="Start New Application for your passport" buttonText="Get Served" onClick={() => navigoter('/PassportLandingPage')}></PassportCardComponent>
                     </Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
                         <PassportCardComponent imageSrc={PassportImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Start New Application for your Visa" buttonText="Get Served" onClick={() => navigoter('/NewVisaApplicationPage')}></PassportCardComponent>
-                    </Col>
-                    <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyText="E Health Systems." bodyTitle="E-Health" buttonText="Comming Soon" onClick={() => navigoter('/')}></PassportCardComponent>
-                    </Col>
-                    <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyText="National Identifcation Card for citizens." bodyTitle="National ID" buttonText="Comming Soon" onClick={() => navigoter('/')}></PassportCardComponent>
-                    </Col>
-                    <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyText="Justice System Components." bodyTitle="E-Justice System" buttonText="Comming Soon" onClick={() => navigoter('/')}></PassportCardComponent>
                     </Col>
 
                     <Col xl={1} lg={1} md={1} sm={1}></Col>
@@ -100,7 +93,7 @@ export const ChooseService: React.FC = () => {
                 <Row>
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyText="Do you want to get your Birth Certificate now? Provide all requested information and apply." bodyTitle="Start New Application for your birth certificate" buttonText="Get Served" onClick={() => navigoter('/BirthLandingPage')}></PassportCardComponent>
+                        <PassportCardComponent imageSrc={BirthImage} bodyText="Do you want to get your Birth Certificate now? Provide all requested information and apply." bodyTitle="Start New Application for your birth certificate" buttonText="Get Served" onClick={() => navigoter('/BirthLandingPage')}></PassportCardComponent>
                     </Col>
                 </Row>
             </Col>

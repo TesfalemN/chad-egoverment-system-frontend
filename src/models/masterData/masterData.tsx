@@ -79,6 +79,21 @@ export default class MasterDataResponse {
             __v: 0
         }
     ];
+    passportType = [
+        {
+            _id: "",
+            passportTypes: [
+                {
+                   passportTypeId: "",
+                   passportTypeName: "",
+                   enPassportTypeName: "",
+                   passportTypeCode: "",
+                   _id: ""
+                },
+            ],
+            __v: 0
+        }
+    ]
 }
 
 class Country {

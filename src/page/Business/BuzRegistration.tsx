@@ -29,7 +29,6 @@ interface RootState {
 
 const BuzRegistration = () => {
   const navigoter = useNavigate();
-  
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
   const [showHide, setSetShowHide] = useState(false);
@@ -165,6 +164,18 @@ const BuzRegistration = () => {
                                   Fill the form, Request your Buisness Licence
                                 </p>
                               </div>
+                              {showSuccess ? (
+                                <div
+                                  className="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+                                  role="alert"
+                                >
+                                  <span className="font-medium">
+                                    Success alert!
+                                  </span>{" "}
+                                  Change a few things up and try submitting
+                                  again.
+                                </div>
+                              ) : null}
 
                               <div className="p-3 custom-form">
                                 <Form onSubmit={formik.handleSubmit}>
@@ -333,20 +344,7 @@ const BuzRegistration = () => {
                                     >
                                       Register
                                     </Button>{" "}
-
                                   </div>
-                                  {showSuccess ? (
-                                <div
-                                  className="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
-                                  role="alert"
-                                >
-                                  <span className="font-medium">
-                                    Success alert!
-                                  </span>{" "}
-                                  Business Registered Succesfully.
-                                </div>
-                              ) : null}
-
                                 </Form>
                               </div>
                             </div>

@@ -1,5 +1,5 @@
 import PassportNavBarComponent from "components/Passport/PassportNavBarComponent";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Stepper } from "react-form-stepper";
 import {
   Col,
@@ -16,14 +16,29 @@ import PassportApplicationRequest from "models/passport/PassportApplicationReque
 import { applyPassport } from "service/PassportService";
 import { useNavigate } from "react-router-dom";
 import BirthCerticicateRequest from "./BirthCerticicateRequest";
+import HttpService from "service/shared/HttpClient";
+import Keys from "helper/Keys";
+import { getToken } from "service/shared/LocalStorage";
 
 const BirthCertificate = () => {
-  const navigoter = useNavigate();
+  const [dat, setDat] = useState([]);
 
+  const navigoter = useNavigate();
+  useEffect(() => {
+    HttpService.getService(Keys.masterDataRelativeURL, `${getToken()}`, "")
+      .then((res) => {
+        setDat(res.data);
+      })
+      .catch((err) => {
+        // alert("noooo");
+      });
+  }, []);
+
+  console.log(dat, "those data");
   const [userState, setUserState] = useState({
     stepperList: [
       {
-        id: "personInfo",
+      id: "personInfo",
         name: "Personal Information",
       },
       {

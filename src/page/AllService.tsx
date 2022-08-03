@@ -1,12 +1,12 @@
 
 import Contact from "components/LandingPage/contact";
 import Footer from "components/LandingPage/footer";
-import Pricing from "components/LandingPage/ServiceList";
+import AllServiceCompo from "components/Service/AllServiceCompo"
 import Section from "components/LandingPage/section";
 import Service from "components/LandingPage/service";
 import NavBar from "components/NavBar/nav-bar";
 import React, { useEffect, useState } from "react";
-const LandingPage = () => {
+const AllService = () => {
   const [state, setState] = useState({
     navItems: [
       { id: 1, idnm: "home", navheading: "Home" },
@@ -53,9 +53,9 @@ const LandingPage = () => {
         imglight={state.imglight}
         top={state.fixTop}
       />
-      <Section />
-      <Pricing />
-      <Service />
+    
+      <AllServiceCompo />
+      
       
 
       
@@ -64,7 +64,7 @@ const LandingPage = () => {
       
 
       {/* Importing Contact Us */}
-      <Contact />
+  
 
       {/* Importing Footer */}
       <Footer />
@@ -72,4 +72,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default AllService;

@@ -70,11 +70,11 @@ export const PassportLandingPage: React.FC = () => {
     });
 
     const checkPassportApplicationStatus = async () => {
-        var response = await checkPassportStatus();
+        //var response = await checkPassportStatus();
 
-        if (response.status == "success") {
-            navigoter("/PassportDetailStatusPage", { state: { isForCheckStatus: true, passportStatusResponse: response } });
-        }
+        //if (response.status == "success") {
+            navigoter("/PassportCheckStautsPage");
+        //}
     }
 
     return (<>
@@ -86,9 +86,6 @@ export const PassportLandingPage: React.FC = () => {
                     <Col xl={1} lg={1} md={1} sm={1}></Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
                         <PassportCardComponent imageSrc={PassportImage} bodyText="Do you want to secure Chad Passport now? Provide all requested information and apply." bodyTitle="Start New Application" buttonText="Apply Now" onClick={() => { navigoter('/PassportNewApplicationPage') }}></PassportCardComponent>
-                    </Col>
-                    <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyTitle="Update existing passport" bodyText="Expried, damaged, page run out, data incorect Passprot?" buttonText="Start Now" onClick={() => { }}></PassportCardComponent>
                     </Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
                         <PassportCardComponent imageSrc={PassportImage} bodyTitle="Check Status" bodyText="What is the status of my Chad Passport request? Provide all requested information and check now." buttonText="Check Now" onClick={() => { checkPassportApplicationStatus(); }}></PassportCardComponent>

@@ -1,5 +1,5 @@
 import PassportNavBarComponent from "components/Passport/PassportNavBarComponent";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Stepper } from "react-form-stepper";
 import {
   Col,
@@ -19,11 +19,30 @@ import BirthCerticicateRequest from "./BirthCerticicateRequest";
 import { applyBirth } from "service/BirthService";
 import { useDispatch } from "react-redux";
 import { set_birth_data } from "store/actions";
+import { MasterDataContext } from "App";
+import Keys from "helper/Keys";
+import { getToken } from "service/shared/LocalStorage";
+import HttpService from "service/shared/HttpClient";
+
 export const Birth: React.FC = () => {
-  const navigoter = useNavigate();
+  const { masterData } = useContext(MasterDataContext);
   const dispatch = useDispatch();
   const [base64Value, setBase64Value] = useState("");
   console.log(base64Value, "person Image");
+  const [dat, setDat] = useState([]);
+
+  const navigoter = useNavigate();
+  useEffect(() => {
+    HttpService.getService(Keys.masterDataRelativeURL, `${getToken()}`, "")
+      .then((res) => {
+        setDat(res && res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  console.log(dat, "master data");
+
   const [userState, setUserState] = useState({
     stepperList: [
       {

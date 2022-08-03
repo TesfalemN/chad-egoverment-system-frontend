@@ -1,10 +1,9 @@
 import PassportNavBarComponent from "components/Passport/PassportNavBarComponent";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Stepper } from "react-form-stepper";
 import {
   Col,
   Row,
-  Form, 
   FormGroup,
   FormLabel,
   FormControl,
@@ -20,10 +19,8 @@ import BirthCerticicateRequest from "./BirthCerticicateRequest";
 import { applyBirth } from "service/BirthService";
 import { useDispatch } from "react-redux";
 import { set_birth_data } from "store/actions";
-import { MasterDataContext } from "App";
 export const BirthCertificate: React.FC = () => {
   const navigoter = useNavigate();
-  const { masterData } = useContext(MasterDataContext);
   const dispatch = useDispatch();
   const [base64Value, setBase64Value] = useState("");
   console.log(base64Value, "person Image");
@@ -54,8 +51,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         disabled: false,
         value: "",
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
         },
@@ -66,8 +61,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
         },
@@ -78,8 +71,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
         },
@@ -91,42 +82,25 @@ export const BirthCertificate: React.FC = () => {
         type: "date",
         value: "",
         disabled: false,
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
         },
       },
       {
-        name: 'Gender',
-        id: '',
-        type: '',
-        value: '',
-        formType: "select",
-        options: [
-            {
-                value: "Male",
-                name: "Male",
-            },
-            {
-                value: "Female",
-                name: "Female",
-            },
-        ],
-        disabled: false, onChange: (value: string, index: number) => {
-            updatePersonalInformationInput(value, index)
-        }
-    },
+        name: "Gender",
+        id: "",
+        type: "",
+        value: "",
+        disabled: false,
+        onChange: (value: string, index: number) => {
+          updatePersonalInformationInput(value, index);
+        },
+      },
       {
         name: "nationality",
         id: "",
         type: "",
         value: "",
-        formType: "select",
-        options:masterData.nationalities[0]?.nationalities?.map((e) => ({
-          name: e.nationality,
-          value: e.countryShortCode
-      })),
         disabled: false,
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
@@ -138,8 +112,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
         },
@@ -149,8 +121,8 @@ export const BirthCertificate: React.FC = () => {
         id: "",
         type: "",
         value: "",
-        formType: "input",
-        options:[],        onChange: (value: string, index: number) => {
+        disabled: false,
+        onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
         },
       },
@@ -160,11 +132,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "select",
-        options:masterData.countryLists[0]?.countryList?.map((e) => ({
-          name: e.countryName,
-          value: e.countryName
-      })),
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
         },
@@ -177,8 +144,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updateContactInformationInput(value, index);
         },
@@ -189,11 +154,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "select",
-        options:masterData.nationalities[0]?.nationalities?.map((e) => ({
-          name: e.nationality,
-          value: e.countryShortCode
-      })),
         onChange: (value: string, index: number) => {
           updateContactInformationInput(value, index);
         },
@@ -204,8 +164,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updateContactInformationInput(value, index);
         },
@@ -216,11 +174,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "select",
-        options:masterData.nationalities[0]?.nationalities?.map((e) => ({
-          name: e.nationality,
-          value: e.countryShortCode
-      })),
         onChange: (value: string, index: number) => {
           updateContactInformationInput(value, index);
         },
@@ -233,9 +186,6 @@ export const BirthCertificate: React.FC = () => {
         type: "file",
         value: "",
         disabled: false,
-        
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updateImageInformationInputs(value, index);
         },
@@ -246,8 +196,6 @@ export const BirthCertificate: React.FC = () => {
         type: "file",
         value: "",
         disabled: false,
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updateImageInformationInputs(value, index);
         },
@@ -260,8 +208,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "select",
-        options:[],
         onChange: (value: string, index: number) => {
           updateHomeInformationInput(value, index);
         },
@@ -272,8 +218,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "select",
-        options:[],
         onChange: (value: string, index: number) => {
           updateHomeInformationInput(value, index);
         },
@@ -284,8 +228,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "inout",
-        options:[],
         onChange: (value: string, index: number) => {
           updateHomeInformationInput(value, index);
         },
@@ -296,8 +238,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "select",
-        options:[],
         onChange: (value: string, index: number) => {
           updateHomeInformationInput(value, index);
         },
@@ -309,8 +249,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updateHomeInformationInput(value, index);
         },
@@ -321,8 +259,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updateHomeInformationInput(value, index);
         },
@@ -332,11 +268,9 @@ export const BirthCertificate: React.FC = () => {
       {
         name: "Date of Birth Registration",
         id: "",
-        type: "date",
+        type: "",
         value: "",
         disabled: false,
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updateOfficeInformationInput(value, index);
         },
@@ -344,11 +278,9 @@ export const BirthCertificate: React.FC = () => {
       {
         name: "Date of Issuance",
         id: "",
-        type: "date",
+        type: "",
         value: "",
         disabled: false,
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updateOfficeInformationInput(value, index);
         },
@@ -359,8 +291,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "input",
-        options:[],
         onChange: (value: string, index: number) => {
           updateOfficeInformationInput(value, index);
         },
@@ -371,8 +301,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "true",
-        options:[],
         onChange: (value: string, index: number) => {
           updateOfficeInformationInput(value, index);
         },
@@ -383,8 +311,6 @@ export const BirthCertificate: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
-        formType: "true",
-        options:[],
         onChange: (value: string, index: number) => {
           updateOfficeInformationInput(value, index);
         },
@@ -558,48 +484,28 @@ export const BirthCertificate: React.FC = () => {
               cardTitle={userState.stepperList[userState.stepIndex].name}
             >
               <Row>
-              <>
-                                {
-                                    userState.stepIndex == 0 ? userState.personInformationInputs.map((e, index) => {
-                                        switch (e.formType) {
-                                            case "input":
-                                                return <Col lg={3} xl={3} md={3} sm={3} >
-                                                    <FormGroup className="mt-3">
-                                                        <FormLabel className="contact-lable custom-contact-lable">
-                                                            {e.name}
-                                                        </FormLabel>
-                                                        <FormControl
-                                                            name={e.name}
-                                                            id={e.id}
-                                                            placeholder={e.name}
-                                                            className="form-control custom-form-control"
-                                                            type={e.type}
-                                                            disabled={e.disabled}
-                                                            value={e.value}
-                                                            onChange={(v) => e.onChange(v.target.value, index)}
-                                                        />
-                                                    </FormGroup>
-                                                </Col>
-                                                break;
-                                            case "select":
-                                                return <Col lg={3} xl={3} md={3} sm={3} >
-                                                    <FormGroup className="mt-3">
-                                                        <FormLabel className="contact-lable custom-contact-lable">
-                                                            {e.name}
-                                                        </FormLabel>
-                                                        <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
-                                                            <>{
-                                                                e.options?.map((item) => {
-                                                                    return <option value={item.value}>{item.name}</option>
-                                                                })
-                                                            }</>
-                                                        </Form.Select>
-                                                    </FormGroup>
-                                                </Col>
-                                        }
-                                    }) : <></>
-                                }
-                            </>
+                {userState.stepIndex == 0 ? (
+                  userState.personInformationInputs.map((e, index) => (
+                    <Col lg={3} xl={3} md={3} sm={3}>
+                      <FormGroup className="mt-3">
+                        <FormLabel className="contact-lable custom-contact-lable">
+                          {e.name}
+                        </FormLabel>
+                        <FormControl
+                          name={e.name}
+                          id={e.id}
+                          placeholder={e.name}
+                          className="form-control custom-form-control"
+                          type={e.type}
+                          value={e.value}
+                          onChange={(v) => e.onChange(v.target.value, index)}
+                        />
+                      </FormGroup>
+                    </Col>
+                  ))
+                ) : (
+                  <></>
+                )}
                 {userState.stepIndex == 0 ? (
                   userState.imageInformationInputs.map((e, index) => (
                     <Col lg={3} xl={3} md={3} sm={3}>
