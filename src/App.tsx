@@ -1,4 +1,4 @@
-import React, { type Dispatch, useState } from "react";
+import React, { type Dispatch, useState, SetStateAction } from "react";
 import logo from "./logo.svg";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -18,19 +18,23 @@ import MasterDataResponse from "models/masterData/masterData";
 import BusinessDetailsPage from "page/Business/BusinessDetailsPage";
 import CheckBusinessStatus from "page/Business/CheckBusinessStatus";
 import AllService from "page/AllService";
-
 import { Birth } from "page/Birth/Birth";
 import BirthDetailsPage from "page/Birth/BirthDetailsPage";
 import BirthCertificateStatus from "page/Birth/BirthCertificateStatus";
+import { VisaLandingPage } from "page/visa/VisaLandingPage";
+import { VisaCheckStautsPage } from "page/visa/VisaCheckStatusPage";
+import { PassportCheckStautsPage } from "page/passport/PassportCheckStatusPage";
 import { BirthCertificate } from "page/Birth/BirthCertificate";
 
-export const MasterDataContext = React.createContext({
-  masterData: new MasterDataResponse(),
-  setMasterData: (() => undefined) as Dispatch<any>,
-});
+const masterDataDefualtValue = {
+  masterData:  new MasterDataResponse(),
+  setMasterData: (() => undefined) as Dispatch<SetStateAction<MasterDataResponse>>
+};
+
+export const MasterDataContext = React.createContext(masterDataDefualtValue);
 
 function App() {
-  const [masterData, setMasterData] = useState(new MasterDataResponse());
+  const [masterData, setMasterData] = useState(masterDataDefualtValue.masterData);
   const value = { masterData, setMasterData };
   return (
     <MasterDataContext.Provider value={value}>
@@ -65,16 +69,16 @@ function App() {
           <Route path="BirthCertificate" element={<Birth />} />
           <Route path="BirthLandingPage" element={<BirthLandingPage />} />
           <Route path="Business" element={<Business />} />
-          <Route
-            path="NewVisaApplicationPage"
-            element={<NewVisaApplicationPage />}
-          />
-          <Route path="BirthCertificate" element={<Birth />} />
+          <Route path="NewVisaApplicationPage" element={<NewVisaApplicationPage />} />
+          <Route path="BirthCertificateDetail" element={<BirthDetailsPage />} />
+          <Route path="VisaLandingPage" element={<VisaLandingPage />} />
+          <Route path="VisaCheckStautsPage" element={<VisaCheckStautsPage />} />
+          <Route path="PassportCheckStautsPage" element={<PassportCheckStautsPage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route
             path="BirthCertificateStatus"
             element={<BirthCertificateStatus />}
           />
-          <Route path="BirthCertificateDetail" element={<BirthDetailsPage />} />
         </Routes>
       </BrowserRouter>
     </MasterDataContext.Provider>

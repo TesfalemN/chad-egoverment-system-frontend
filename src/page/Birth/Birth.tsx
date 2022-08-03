@@ -1,5 +1,5 @@
 import BirthNavBarComponent from "components/Birth/BirthNavBarComponent";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Stepper } from "react-form-stepper";
 import {
   Col,
@@ -8,6 +8,7 @@ import {
   FormLabel,
   FormControl,
   Button,
+  Form,
 } from "react-bootstrap";
 import { CustomCard } from "components/shared/Card";
 import { bool, boolean } from "yup";
@@ -19,9 +20,11 @@ import BirthCerticicateRequest from "../Birth/BirthCerticicateRequest";
 import { applyBirth } from "service/BirthService";
 import { useDispatch } from "react-redux";
 import { set_birth_data } from "store/actions";
+import { MasterDataContext } from "App";
 export const Birth: React.FC = () => {
   const navigoter = useNavigate();
   const dispatch = useDispatch();
+  const { masterData } = useContext(MasterDataContext);
   const [base64Value, setBase64Value] = useState("");
   console.log(base64Value, "person Image");
   const [userState, setUserState] = useState({
@@ -50,6 +53,8 @@ export const Birth: React.FC = () => {
         id: "",
         type: "",
         disabled: false,
+        formType:"input",
+        options:[],
         value: "",
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
@@ -60,27 +65,32 @@ export const Birth: React.FC = () => {
         id: "",
         type: "",
         value: "",
+        formType:"input",
+        options:[],
         disabled: false,
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
         },
       },
       {
-        name: "last Name",
+        name: "Last Name",
         id: "",
         type: "",
         value: "",
+        formType:"input",
+        options:[],
         disabled: false,
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
         },
       },
-
       {
         name: "Date of Birth",
         id: "",
         type: "date",
         value: "",
+        formType:"input",
+        options:[],
         disabled: false,
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
@@ -92,16 +102,32 @@ export const Birth: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
+        formType: "select",
+        options: [
+            {
+                value: "Male",
+                name: "Male",
+            },
+            {
+                value: "Female",
+                name: "Female",
+            },
+        ],
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
         },
       },
       {
-        name: "nationality",
+        name: "Nationality",
         id: "",
         type: "",
         value: "",
         disabled: false,
+        formType: "select",
+        options: masterData.nationalities[0]?.nationalities?.map((e) => ({
+          name: e.nationality,
+          value: e.countryShortCode
+      })),
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
         },
@@ -111,6 +137,8 @@ export const Birth: React.FC = () => {
         id: "",
         type: "",
         value: "",
+        formType:"input",
+        options:[],
         disabled: false,
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
@@ -121,6 +149,8 @@ export const Birth: React.FC = () => {
         id: "",
         type: "",
         value: "",
+        formType:"input",
+        options:[],
         disabled: false,
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
@@ -131,6 +161,8 @@ export const Birth: React.FC = () => {
         id: "",
         type: "",
         value: "",
+        formType:"input",
+        options:[],
         disabled: false,
         onChange: (value: string, index: number) => {
           updatePersonalInformationInput(value, index);
@@ -143,6 +175,8 @@ export const Birth: React.FC = () => {
         id: "",
         type: "",
         value: "",
+        formType:"input",
+        options:[],
         disabled: false,
         onChange: (value: string, index: number) => {
           updateContactInformationInput(value, index);
@@ -154,6 +188,11 @@ export const Birth: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
+        formType: "select",
+        options: masterData.nationalities[0]?.nationalities?.map((e) => ({
+          name: e.nationality,
+          value: e.countryShortCode
+      })),
         onChange: (value: string, index: number) => {
           updateContactInformationInput(value, index);
         },
@@ -163,6 +202,8 @@ export const Birth: React.FC = () => {
         id: "",
         type: "",
         value: "",
+        formType:"input",
+        options:[],
         disabled: false,
         onChange: (value: string, index: number) => {
           updateContactInformationInput(value, index);
@@ -174,6 +215,11 @@ export const Birth: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
+        formType: "select",
+        options: masterData.nationalities[0]?.nationalities?.map((e) => ({
+          name: e.nationality,
+          value: e.countryShortCode
+      })),
         onChange: (value: string, index: number) => {
           updateContactInformationInput(value, index);
         },
@@ -185,6 +231,13 @@ export const Birth: React.FC = () => {
         id: "",
         type: "file",
         value: "",
+        formType:"input",
+        options:[
+          {
+            name:"", 
+            value:""
+          }
+        ],
         disabled: false,
         onChange: (value: string, index: number) => {
           updateImageInformationInputs(value, index);
@@ -195,6 +248,8 @@ export const Birth: React.FC = () => {
         id: "",
         type: "file",
         value: "",
+        formType:"input",
+        options:[],
         disabled: false,
         onChange: (value: string, index: number) => {
           updateImageInformationInputs(value, index);
@@ -208,6 +263,11 @@ export const Birth: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
+        formType: "select",
+        options: masterData.regions[0]?.regions?.map((e) => ({
+          name: e.name,
+          value: e.code
+      })),
         onChange: (value: string, index: number) => {
           updateHomeInformationInput(value, index);
         },
@@ -218,6 +278,8 @@ export const Birth: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
+        formType:"input",
+        options:[],
         onChange: (value: string, index: number) => {
           updateHomeInformationInput(value, index);
         },
@@ -227,6 +289,8 @@ export const Birth: React.FC = () => {
         id: "",
         type: "",
         value: "",
+        formType:"input",
+        options:[],
         disabled: false,
         onChange: (value: string, index: number) => {
           updateHomeInformationInput(value, index);
@@ -237,6 +301,8 @@ export const Birth: React.FC = () => {
         id: "",
         type: "",
         value: "",
+        formType:"input",
+        options:[],
         disabled: false,
         onChange: (value: string, index: number) => {
           updateHomeInformationInput(value, index);
@@ -248,6 +314,8 @@ export const Birth: React.FC = () => {
         id: "",
         type: "",
         value: "",
+        formType:"input",
+        options:[],
         disabled: false,
         onChange: (value: string, index: number) => {
           updateHomeInformationInput(value, index);
@@ -259,6 +327,8 @@ export const Birth: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
+        formType:"input",
+        options:[],
         onChange: (value: string, index: number) => {
           updateHomeInformationInput(value, index);
         },
@@ -271,6 +341,13 @@ export const Birth: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
+        formType:"input",
+        options:[
+          {
+            name:"", 
+            value : ""
+          }
+        ],
         onChange: (value: string, index: number) => {
           updateOfficeInformationInput(value, index);
         },
@@ -281,6 +358,8 @@ export const Birth: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
+        formType:"input",
+        options:[],
         onChange: (value: string, index: number) => {
           updateOfficeInformationInput(value, index);
         },
@@ -291,6 +370,8 @@ export const Birth: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
+        formType:"input",
+        options:[],
         onChange: (value: string, index: number) => {
           updateOfficeInformationInput(value, index);
         },
@@ -301,6 +382,8 @@ export const Birth: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
+        formType:"input",
+        options:[],
         onChange: (value: string, index: number) => {
           updateOfficeInformationInput(value, index);
         },
@@ -311,6 +394,8 @@ export const Birth: React.FC = () => {
         type: "",
         value: "",
         disabled: false,
+        formType:"input",
+        options:[],
         onChange: (value: string, index: number) => {
           updateOfficeInformationInput(value, index);
         },
@@ -485,112 +570,302 @@ export const Birth: React.FC = () => {
             >
               <Row>
                 {userState.stepIndex == 0 ? (
-                  userState.personInformationInputs.map((e, index) => (
-                    <Col lg={3} xl={3} md={3} sm={3}>
-                      <FormGroup className="mt-3">
-                        <FormLabel className="contact-lable custom-contact-lable">
-                          {e.name}
-                        </FormLabel>
-                        <FormControl
-                          name={e.name}
-                          id={e.id}
-                          placeholder={e.name}
-                          className="form-control custom-form-control"
-                          type={e.type}
-                          value={e.value}
-                          onChange={(v) => e.onChange(v.target.value, index)}
-                        />
-                      </FormGroup>
-                    </Col>
-                  ))
+                  userState.personInformationInputs.map((e, index) => {
+                    switch (e.formType) {
+                      case "input":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <FormControl
+                                      name={e.name}
+                                      id={e.id}
+                                      placeholder={e.name}
+                                      className="form-control custom-form-control"
+                                      type={e.type}
+                                      disabled={e.disabled}
+                                      value={e.value}
+                                      onChange={(v) => e.onChange(v.target.value, index)}
+                                  />
+                              </FormGroup>
+                          </Col>
+                          break;
+                      case "select":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
+                                      <>{
+                                          e.options?.map((item) => {
+                                              return <option value={item.value}>{item.name}</option>
+                                          })
+                                      }</>
+                                  </Form.Select>
+                              </FormGroup>
+                          </Col>
+                      case "phoneNumber":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <div className="d-inline-block-2">
+                                      <Form.Select className="country-code px-2" aria-label={`Select ${e.name} `} value={e.value} onChange={(v) => e.onChange(v.target.value, index)}>
+                                          <>{
+                                              e.options?.map((item) => {
+                                                  return <option value={item.value}>{item.name}</option>
+                                              })
+                                          }</>
+                                      </Form.Select>
+                                      <input type="text" className="form-control form-control-2" id="ec-mobile-number" aria-describedby="emailHelp" placeholder="91257888" />
+                                  </div>
+                              </FormGroup>
+                          </Col>
+                  }
+                  })
                 ) : (
                   <></>
                 )}
                 {userState.stepIndex == 0 ? (
-                  userState.imageInformationInputs.map((e, index) => (
-                    <Col lg={3} xl={3} md={3} sm={3}>
-                      <FormGroup className="mt-3">
-                        <FormLabel className="contact-lable custom-contact-lable">
-                          {e.name}
-                        </FormLabel>
-                        <FormControl
-                          name={e.name}
-                          id={e.id}
-                          placeholder={e.name}
-                          className="form-control custom-form-control"
-                          type={e.type}
-                          value={e.value}
-                          onChange={handleOnChange}
-                        />
-                      </FormGroup>
-                    </Col>
-                  ))
+                  userState.imageInformationInputs.map((e, index) => {
+                    switch (e.formType) {
+                      case "input":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <FormControl
+                                      name={e.name}
+                                      id={e.id}
+                                      placeholder={e.name}
+                                      className="form-control custom-form-control"
+                                      type={e.type}
+                                      disabled={e.disabled}
+                                      value={e.value}
+                                      onChange={(v) => e.onChange(v.target.value, index)}
+                                  />
+                              </FormGroup>
+                          </Col>
+                          break;
+                      case "select":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
+                                      <>{
+                                          e.options?.map((item) => {
+                                              return <option value={item.value}>{item.name}</option>
+                                          })
+                                      }</>
+                                  </Form.Select>
+                              </FormGroup>
+                          </Col>
+                      case "phoneNumber":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <div className="d-inline-block-2">
+                                      <Form.Select className="country-code px-2" aria-label={`Select ${e.name} `} value={e.value} onChange={(v) => e.onChange(v.target.value, index)}>
+                                          <>{
+                                              e.options?.map((item) => {
+                                                  return <option value={item.value}>{item.name}</option>
+                                              })
+                                          }</>
+                                      </Form.Select>
+                                      <input type="text" className="form-control form-control-2" id="ec-mobile-number" aria-describedby="emailHelp" placeholder="91257888" />
+                                  </div>
+                              </FormGroup>
+                          </Col>
+                  }
+                  })
                 ) : (
                   <></>
                 )}
                 {userState.stepIndex == 1 ? (
-                  userState.contactInformationInputs.map((e, index) => (
-                    <Col lg={3} xl={3} md={3} sm={3}>
-                      <FormGroup className="mt-3">
-                        <FormLabel className="contact-lable custom-contact-lable">
-                          {e.name}
-                        </FormLabel>
-                        <FormControl
-                          name={e.name}
-                          id={e.id}
-                          placeholder={e.name}
-                          className="form-control custom-form-control"
-                          type={e.type}
-                          value={e.value}
-                          onChange={(v) => e.onChange(v.target.value, index)}
-                        />
-                      </FormGroup>
-                    </Col>
-                  ))
+                  userState.contactInformationInputs.map((e, index) => {
+                    switch (e.formType) {
+                      case "input":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <FormControl
+                                      name={e.name}
+                                      id={e.id}
+                                      placeholder={e.name}
+                                      className="form-control custom-form-control"
+                                      type={e.type}
+                                      disabled={e.disabled}
+                                      value={e.value}
+                                      onChange={(v) => e.onChange(v.target.value, index)}
+                                  />
+                              </FormGroup>
+                          </Col>
+                          break;
+                      case "select":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
+                                      <>{
+                                          e.options?.map((item) => {
+                                              return <option value={item.value}>{item.name}</option>
+                                          })
+                                      }</>
+                                  </Form.Select>
+                              </FormGroup>
+                          </Col>
+                      case "phoneNumber":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <div className="d-inline-block-2">
+                                      <Form.Select className="country-code px-2" aria-label={`Select ${e.name} `} value={e.value} onChange={(v) => e.onChange(v.target.value, index)}>
+                                          <>{
+                                              e.options?.map((item) => {
+                                                  return <option value={item.value}>{item.name}</option>
+                                              })
+                                          }</>
+                                      </Form.Select>
+                                      <input type="text" className="form-control form-control-2" id="ec-mobile-number" aria-describedby="emailHelp" placeholder="91257888" />
+                                  </div>
+                              </FormGroup>
+                          </Col>
+                  }
+                  })
                 ) : (
                   <></>
                 )}
                 {userState.stepIndex == 2 ? (
-                  userState.homeInformationInputs.map((e, index) => (
-                    <Col lg={3} xl={3} md={3} sm={3}>
-                      <FormGroup className="mt-3">
-                        <FormLabel className="contact-lable custom-contact-lable">
-                          {e.name}
-                        </FormLabel>
-                        <FormControl
-                          name={e.name}
-                          id={e.id}
-                          placeholder={e.name}
-                          className="form-control custom-form-control"
-                          type={e.type}
-                          value={e.value}
-                          onChange={(v) => e.onChange(v.target.value, index)}
-                        />
-                      </FormGroup>
-                    </Col>
-                  ))
+                  userState.homeInformationInputs.map((e, index) => {
+                    switch (e.formType) {
+                      case "input":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <FormControl
+                                      name={e.name}
+                                      id={e.id}
+                                      placeholder={e.name}
+                                      className="form-control custom-form-control"
+                                      type={e.type}
+                                      disabled={e.disabled}
+                                      value={e.value}
+                                      onChange={(v) => e.onChange(v.target.value, index)}
+                                  />
+                              </FormGroup>
+                          </Col>
+                          break;
+                      case "select":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
+                                      <>{
+                                          e.options?.map((item) => {
+                                              return <option value={item.value}>{item.name}</option>
+                                          })
+                                      }</>
+                                  </Form.Select>
+                              </FormGroup>
+                          </Col>
+                      case "phoneNumber":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <div className="d-inline-block-2">
+                                      <Form.Select className="country-code px-2" aria-label={`Select ${e.name} `} value={e.value} onChange={(v) => e.onChange(v.target.value, index)}>
+                                          <>{
+                                              e.options?.map((item) => {
+                                                  return <option value={item.value}>{item.name}</option>
+                                              })
+                                          }</>
+                                      </Form.Select>
+                                      <input type="text" className="form-control form-control-2" id="ec-mobile-number" aria-describedby="emailHelp" placeholder="91257888" />
+                                  </div>
+                              </FormGroup>
+                          </Col>
+                  }
+                  })
                 ) : (
                   <></>
                 )}
                 {userState.stepIndex == 3 ? (
-                  userState.officeInformationInputs.map((e, index) => (
-                    <Col lg={3} xl={3} md={3} sm={3}>
-                      <FormGroup className="mt-3">
-                        <FormLabel className="contact-lable custom-contact-lable">
-                          {e.name}
-                        </FormLabel>
-                        <FormControl
-                          name={e.name}
-                          id={e.id}
-                          placeholder={e.name}
-                          className="form-control custom-form-control"
-                          type={e.type}
-                          value={e.value}
-                          onChange={(v) => e.onChange(v.target.value, index)}
-                        />
-                      </FormGroup>
-                    </Col>
-                  ))
+                  userState.officeInformationInputs.map((e, index) => {
+                    switch (e.formType) {
+                      case "input":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <FormControl
+                                      name={e.name}
+                                      id={e.id}
+                                      placeholder={e.name}
+                                      className="form-control custom-form-control"
+                                      type={e.type}
+                                      disabled={e.disabled}
+                                      value={e.value}
+                                      onChange={(v) => e.onChange(v.target.value, index)}
+                                  />
+                              </FormGroup>
+                          </Col>
+                          break;
+                      case "select":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
+                                      <>{
+                                          e.options?.map((item) => {
+                                              return <option value={item.value}>{item.name}</option>
+                                          })
+                                      }</>
+                                  </Form.Select>
+                              </FormGroup>
+                          </Col>
+                      case "phoneNumber":
+                          return <Col lg={3} xl={3} md={3} sm={3} >
+                              <FormGroup className="mt-3">
+                                  <FormLabel className="contact-lable custom-contact-lable">
+                                      {e.name}
+                                  </FormLabel>
+                                  <div className="d-inline-block-2">
+                                      <Form.Select className="country-code px-2" aria-label={`Select ${e.name} `} value={e.value} onChange={(v) => e.onChange(v.target.value, index)}>
+                                          <>{
+                                              e.options?.map((item) => {
+                                                  return <option value={item.value}>{item.name}</option>
+                                              })
+                                          }</>
+                                      </Form.Select>
+                                      <input type="text" className="form-control form-control-2" id="ec-mobile-number" aria-describedby="emailHelp" placeholder="91257888" />
+                                  </div>
+                              </FormGroup>
+                          </Col>
+                  }
+                  })
                 ) : (
                   <></>
                 )}

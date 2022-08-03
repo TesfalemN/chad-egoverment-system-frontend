@@ -21,7 +21,8 @@ export default class PassportApplicationRequest {
         gender: "",
         martial_status: "",
         height: "",
-        eye_color: ""
+        eye_color: "", 
+        oldPassportNumber : ""
     };
     userAddress = {
         region: "",

@@ -66,7 +66,7 @@ export const BirthCertificate: React.FC = () => {
         },
       },
       {
-        name: "last Name",
+        name: "Last Name",
         id: "",
         type: "",
         value: "",
@@ -97,7 +97,7 @@ export const BirthCertificate: React.FC = () => {
         },
       },
       {
-        name: "nationality",
+        name: "Nationality",
         id: "",
         type: "",
         value: "",

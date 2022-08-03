@@ -1,6 +1,5 @@
 
-import PassportNavBarComponent from "components/Business/BusinessNavBarComponent";
-import VisaNavBarComponent from "components/Visa/VisaNavBarComponent"
+import { PassportNavBarComponent } from "components/Passport/PassportNavBarComponent";
 import React, { useState } from "react"
 import { Card, Col, Row, FormGroup, FormLabel, FormControl, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -17,11 +16,11 @@ export const PassportCheckStautsPage: React.FC = () => {
             applicationID: applicationId
         });
 
-        if (response.status == "success") {
-            navigoter("/PassportCheckStautsPage");
-        }
+        console.log(response);
 
-        navigoter("/PassportCheckStautsPage", { state: { isForCheckStatus: true, passportStatusResponse: response } });
+        if (response.status == "success") {
+            navigoter("/PassportDetailStatusPage", { state: { isForCheckStatus: true, passportStatusResponse: response } });
+        }
     }
 
     return (<> <PassportNavBarComponent />
@@ -32,10 +31,11 @@ export const PassportCheckStautsPage: React.FC = () => {
                     <Col xl={4} lg={4} md={4} sm={4}>
                         <Card>
                             <Card.Body>
-                                <div className="title-box text-center mt-4">
-                                    <h3 className="">
+                                <div className="title-box mt-4">
+                                    <h3 className="text-center">
                                         Check for Status
                                     </h3>
+                                    <div className="hr" />
                                     <Row><Col xl={2} lg={2} md={2} sm={2}></Col>
                                         <Col xl={8} lg={8} md={8} sm={8}>
                                             <FormGroup className="">
@@ -57,10 +57,10 @@ export const PassportCheckStautsPage: React.FC = () => {
 
                                     </Row>
                                     <Row><Col xl={2} lg={2} md={2} sm={2}></Col>
-                                        <Col xl={8} lg={8} md={8} sm={8}>
-                                            <Button onClick={checkPassportApplicationStatus} style={{ width: "300px" }} className="mt-4">Find My Application</Button>
-                                        </Col>
-                                        <Col xl={2} lg={2} md={2} sm={2}></Col>
+                                    <Col xl={8} lg={8} md={8} sm={8}>
+                                    <Button style={{minWidth: "100%"}} onClick={checkPassportApplicationStatus} className="mt-4">Find My Application</Button>
+
+                                    </Col>
                                     </Row>
                                     <div className="title-box text-center mt-4">
 

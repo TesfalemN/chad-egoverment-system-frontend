@@ -7,7 +7,10 @@ export default class Keys {
     static businessregistrationRelativeURL = "/api/business/register";
     static masterDataRelativeURL = "/api/masterData/getMasterData";
     static birthregistrationRelativeURL: string = "/api/birthCertificate/register";
+    static visagistrationRelativeURL: string = "/api/visa/apply";
+    static visaCheckRelativeURL: string = "/api/visa/apply";
+    static getmyBusinessInfo="/api/business/getMyStatusById"
     static getmyBirthInfo: string = "/api/birthCertificate/getMyInfo";
-    static getmyBusinessInfo: string = "/api/business/getMyStatusById";
-
+    static visaExtendRelativeURL: string = "/api/visa/extend";
+    static visaCloseRelativeURL: string = "/api/visa/extend";
 }

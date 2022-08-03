@@ -9,6 +9,9 @@ import PassportApplicationRequest from "models/passport/PassportApplicationReque
 import { applyPassport } from "service/PassportService";
 import { useNavigate } from "react-router-dom";
 import { MasterDataContext } from "App";
+import VisaNavBarComponent from "components/Visa/VisaNavBarComponent";
+import NewVisaApplicationRequest from "models/visa/NewVisaApplicationRequest";
+import { applyVisa } from "service/VisaService";
 
 export const NewVisaApplicationPage: React.FC = () => {
     const navigoter = useNavigate();
@@ -54,6 +57,51 @@ export const NewVisaApplicationPage: React.FC = () => {
                 }
 
             },
+            {
+                name: 'Citizenship',
+                id: '',
+                type: '',
+                value: '',
+                formType: 'select',
+                options: masterData.nationalities[0]?.nationalities?.map((e) => ({
+                    name: e.nationalityEN,
+                    value: e.nationalityEN
+                })),
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateVisaInformationInput(value, index)
+                }
+
+            },
+            {
+                name: 'Person Image',
+                id: '',
+                type: 'file',
+                value: '',
+                formType: 'input',
+                options: masterData.nationalities[0]?.nationalities?.map((e) => ({
+                    name: e.nationalityEN,
+                    value: e.nationalityEN
+                })),
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateVisaInformationInput(value, index)
+                }
+
+            },
+            {
+                name: 'Passport Image',
+                id: '',
+                type: 'file',
+                value: '',
+                formType: 'input',
+                options: masterData.nationalities[0]?.nationalities?.map((e) => ({
+                    name: e.nationalityEN,
+                    value: e.nationalityEN
+                })),
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateVisaInformationInput(value, index)
+                }
+
+            },
         ],
         personInformationInputs: [
             {
@@ -70,25 +118,25 @@ export const NewVisaApplicationPage: React.FC = () => {
             {
                 name: 'Middle Name',
                 id: '',
-                type: '',
-                value: 'text',
+                type: 'text',
+                value: '',
                 formType: "input",
                 disabled: false, onChange: (value: string, index: number) => {
                     updatePersonalInformationInput(value, index)
                 }
             },
             {
-                name: 'last Name',
+                name: 'Last Name',
                 id: '',
-                type: '',
-                value: 'text',
+                type: 'text',
+                value: '',
                 formType: "input",
                 disabled: false, onChange: (value: string, index: number) => {
                     updatePersonalInformationInput(value, index)
                 }
             },
             {
-                name: 'nationality',
+                name: 'Nationality',
                 id: '',
                 type: '',
                 value: '',
@@ -137,7 +185,11 @@ export const NewVisaApplicationPage: React.FC = () => {
                 id: '',
                 type: 'tel',
                 value: '',
-                formType: "input",
+                formType: "phoneNumber",
+                options: masterData.countryPhoneCodeLists[0].countryPhoneCodeList.map((e) =>({
+                        name : e.countryName, 
+                        value:  `${e.countryPhoneCode}`
+                })),
                 disabled: false, onChange: (value: string, index: number) => {
                     updatePersonalInformationInput(value, index)
                 }
@@ -167,7 +219,7 @@ export const NewVisaApplicationPage: React.FC = () => {
             {
                 name: 'Birth Place',
                 id: '',
-                type: 'date',
+                type: 'text',
                 value: '',
                 formType: "input",
                 disabled: false, onChange: (value: string, index: number) => {
@@ -198,7 +250,7 @@ export const NewVisaApplicationPage: React.FC = () => {
                 value: '',
                 formType: 'input',
                 disabled: false, onChange: (value: string, index: number) => {
-                    updatePersonalInformationInput(value, index)
+                    updateContactInformationInput(value, index)
                 }
 
             },
@@ -209,7 +261,7 @@ export const NewVisaApplicationPage: React.FC = () => {
                 value: '',
                 formType: 'input',
                 disabled: false, onChange: (value: string, index: number) => {
-                    updatePersonalInformationInput(value, index)
+                    updateContactInformationInput(value, index)
                 }
 
             },
@@ -224,12 +276,27 @@ export const NewVisaApplicationPage: React.FC = () => {
                     value: e.countryName
                 })),
                 disabled: false, onChange: (value: string, index: number) => {
-                    updatePersonalInformationInput(value, index)
+                    updateContactInformationInput(value, index)
                 }
 
             },
         ],
         homeInformationInputs: [
+            {
+                name: 'Passport Type',
+                id: '',
+                type: 'Ordinary Passport',
+                value: '',
+                formType: 'select',
+                options: masterData.passportTypes[0]?.passportTypes?.map((e) => ({
+                    name: e.passportTypeName,
+                    value: e.passportTypeCode
+                })),
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateHomeInformationInput(value, index)
+                }
+
+            },
             {
                 name: 'Passport Number',
                 id: '',
@@ -244,7 +311,7 @@ export const NewVisaApplicationPage: React.FC = () => {
             {
                 name: 'Passport Issue Date',
                 id: '',
-                type: '',
+                type: 'date',
                 value: '',
                 formType: 'input',
                 disabled: false, onChange: (value: string, index: number) => {
@@ -253,9 +320,9 @@ export const NewVisaApplicationPage: React.FC = () => {
 
             },
             {
-                name: 'State',
+                name: 'Passport Expiry Date',
                 id: '',
-                type: '',
+                type: 'date',
                 value: '',
                 formType: 'input',
                 disabled: false, onChange: (value: string, index: number) => {
@@ -264,33 +331,11 @@ export const NewVisaApplicationPage: React.FC = () => {
 
             },
             {
-                name: 'Zone',
+                name: 'Passport Issuing Country',
                 id: '',
                 type: '',
                 value: '',
-                formType: 'input',
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateHomeInformationInput(value, index)
-                }
-
-            },
-            {
-                name: 'Street',
-                id: '',
-                type: '',
-                value: '',
-                formType: 'input',
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateHomeInformationInput(value, index)
-                }
-
-            },
-            {
-                name: 'House number',
-                id: '',
-                type: '',
-                value: '',
-                formType: 'input',
+                formType: 'select',
                 options: masterData.countryLists[0]?.countryList?.map((e) => ({
                     name: e.countryName,
                     value: e.countryName
@@ -298,10 +343,9 @@ export const NewVisaApplicationPage: React.FC = () => {
                 disabled: false, onChange: (value: string, index: number) => {
                     updateHomeInformationInput(value, index)
                 }
-
             },
             {
-                name: 'Po. Box',
+                name: 'Issuing Authority',
                 id: '',
                 type: '',
                 value: '',
@@ -314,9 +358,9 @@ export const NewVisaApplicationPage: React.FC = () => {
         ],
         officeInformationInputs: [
             {
-                name: 'City',
+                name: 'Arrival Date',
                 id: '',
-                type: '',
+                type: 'date',
                 value: '',
                 formType: 'input',
                 options: masterData.countryLists[0]?.countryList?.map((e) => ({
@@ -329,7 +373,7 @@ export const NewVisaApplicationPage: React.FC = () => {
 
             },
             {
-                name: 'Delivery Site',
+                name: 'Visa Validity',
                 id: '',
                 type: '',
                 value: '',
@@ -340,26 +384,98 @@ export const NewVisaApplicationPage: React.FC = () => {
 
             },
             {
-                name: 'Appointment Date',
+                name: 'Departure Country',
                 id: '',
                 type: 'date',
                 value: '',
-                formType: 'input',
+                formType: 'select',
+                options: masterData.countryLists[0]?.countryList?.map((e) => ({
+                    name: e.countryName,
+                    value: e.countryName
+                })),
                 disabled: false, onChange: (value: string, index: number) => {
                     updateOfficeInformationInput(value, index)
                 }
-
             },
             {
-                name: 'Appointment Time',
+                name: 'Departure City',
                 id: '',
-                type: 'time',
+                type: 'text',
                 value: '',
                 formType: 'input',
                 disabled: false, onChange: (value: string, index: number) => {
                     updateOfficeInformationInput(value, index)
                 }
-
+            },
+            {
+                name: 'Airline Name',
+                id: '',
+                type: 'text',
+                value: '',
+                formType: 'input',
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateOfficeInformationInput(value, index)
+                }
+            },
+            {
+                name: 'Flight Number',
+                id: '',
+                type: 'text',
+                value: '',
+                formType: 'input',
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateOfficeInformationInput(value, index)
+                }
+            },
+            {
+                name: 'Arrival Adress Accomodation Type',
+                id: '',
+                type: 'text',
+                value: '',
+                formType: 'input',
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateOfficeInformationInput(value, index)
+                }
+            },
+            {
+                name: 'Arrival Adress Accomodation Name',
+                id: '',
+                type: 'text',
+                value: '',
+                formType: 'input',
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateOfficeInformationInput(value, index)
+                }
+            },
+            {
+                name: 'Arrival Adress Accomodation City',
+                id: '',
+                type: 'text',
+                value: '',
+                formType: 'input',
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateOfficeInformationInput(value, index)
+                }
+            },
+            {
+                name: 'Arrival Adress Accomodation Phone Number',
+                id: '',
+                type: 'tel',
+                value: '',
+                formType: 'input',
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateOfficeInformationInput(value, index)
+                }
+            },
+            {
+                name: 'Arrival Adress Accomodation Street Address',
+                id: '',
+                type: 'tel',
+                value: '',
+                formType: 'input',
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateOfficeInformationInput(value, index)
+                }
             },
         ]
     });
@@ -430,7 +546,7 @@ export const NewVisaApplicationPage: React.FC = () => {
             console.log(userState.stepIndex)
         }
         else {
-            await submitPassportInformation();
+            await submitVisaInformation();
         }
     }
 
@@ -445,48 +561,65 @@ export const NewVisaApplicationPage: React.FC = () => {
         }
     }
 
-    const submitPassportInformation = async () => {
-        var passportApplicationReqeust = new PassportApplicationRequest();
-        passportApplicationReqeust = {
-            type: "new",
-            personalInformation: {
-                first_name: userState.personInformationInputs[0].value ?? "",
-                middle_name: userState.personInformationInputs[1].value  ?? "",
-                last_name: userState.personInformationInputs[2].value  ?? "",
-                nationality: userState.personInformationInputs[3].value  ?? "",
-                occupation: userState.personInformationInputs[4].value  ?? "",
-                hair_color: userState.personInformationInputs[5].value  ?? "",
-                gender: userState.personInformationInputs[6].value  ?? "",
-                martial_status: userState.personInformationInputs[7].value  ?? "",
-                height: userState.personInformationInputs[8].value  ?? "",
-                eye_color: userState.personInformationInputs[9].value  ?? "",
-                phone_number: userState.contactInformationInputs[0].value,
-                email: userState.contactInformationInputs[1].value,
-                date_of_birth: userState.contactInformationInputs[2].value,
-                birth_place: userState.contactInformationInputs[3].value,
-                birth_certificate_id: userState.contactInformationInputs[4].value,
-            },
-            userAddress: {
-                region: userState.homeInformationInputs[0].value,
-                city: userState.homeInformationInputs[1].value,
-                state: userState.homeInformationInputs[2].value,
-                zone: userState.homeInformationInputs[3].value,
-                street: userState.homeInformationInputs[4].value,
-                house_number: userState.homeInformationInputs[5].value,
-                po_box: userState.homeInformationInputs[6].value,
-            },
-            officeAddress: {
-                city: userState.officeInformationInputs[0].value,
-                delivery_site: userState.officeInformationInputs[1].value,
-                appointment_date: userState.officeInformationInputs[2].value,
-                appointment_time: userState.officeInformationInputs[3].value,
+    const submitVisaInformation = async () => {
+        var newVisaApplicationRequest = new NewVisaApplicationRequest();
+        newVisaApplicationRequest = {
+            visaApplication: {
+                visaType: userState.vsiaInformationInputs[0].value ?? "",
+                citizenship: userState.vsiaInformationInputs[1].value ?? "",
+                personImage: "-",
+                passportImage: "-",
+                personalInformation: {
+                    personalInfo: {
+                        firstName: userState.personInformationInputs[0].value ?? "",
+                        middleName: userState.personInformationInputs[1].value ?? "",
+                        lastName: userState.personInformationInputs[2].value ?? "",
+                        gender: userState.personInformationInputs[3].value ?? "",
+                        dateOfBirth: userState.personInformationInputs[4].value ?? "",
+                        nationality: userState.personInformationInputs[5].value ?? "",
+                        phoneNumber: userState.personInformationInputs[6].value ?? "",
+                        email: userState.personInformationInputs[7].value ?? "",
+                        birthPlace: userState.personInformationInputs[8].value ?? "",
+                        birthCountry: userState.personInformationInputs[9].value ?? "",
+                        occupation: userState.personInformationInputs[10].value ?? "",
+                    },
+                    permanentAddress: {
+                        street: userState.contactInformationInputs[0].value ?? "",
+                        city: userState.contactInformationInputs[1].value ?? "",
+                        country: userState.contactInformationInputs[1].value ?? "",
+                    }
+                },
+                passportDetail: {
+                    passportType: userState.homeInformationInputs[0].value ?? "",
+                    passportNumber: userState.homeInformationInputs[1].value ?? "",
+                    passportIssueDate: userState.homeInformationInputs[2].value ?? "",
+                    passportExpiryDate: userState.homeInformationInputs[3].value ?? "",
+                    passportIssuingCountry: userState.homeInformationInputs[4].value ?? "",
+                    issuingAuthority: userState.homeInformationInputs[5].value ?? "",
+                },
+                arrivalInformation: {
+                    arrivalDate: userState.officeInformationInputs[0].value ?? "",
+                    visaValidity: userState.officeInformationInputs[1].value ?? "",
+                    departureCountry: userState.officeInformationInputs[2].value ?? "",
+                    departureCity: userState.officeInformationInputs[3].value ?? "",
+                    airlineName: userState.officeInformationInputs[4].value ?? "",
+                    flightNumber: userState.officeInformationInputs[5].value ?? "",
+                    arrivalAdress: {
+                        accomodationType: userState.officeInformationInputs[6].value ?? "",
+                        accomodationName: userState.officeInformationInputs[7].value ?? "",
+                        accomodationCity: userState.officeInformationInputs[8].value ?? "",
+                        accomodationPhoneNo: userState.officeInformationInputs[9].value ?? "",
+                        accomodationStreetAddress: userState.officeInformationInputs[10].value ?? "",
+                    }
+                }
             }
         }
 
-        var response = await applyPassport(passportApplicationReqeust);
+        console.log(newVisaApplicationRequest);
+        var response = await applyVisa(newVisaApplicationRequest);
 
         if (response?.status == "success") {
-            navigoter('/PassportDetailStatusPage', { state: { isForCheckStatus: false, passportApplicationResponse: response } });
+            navigoter('/VisaLandingPage', { state: { isForCheckStatus: false, passportApplicationResponse: response } });
         }
     }
     return (<>
@@ -553,12 +686,19 @@ export const NewVisaApplicationPage: React.FC = () => {
                                                             {e.name}
                                                         </FormLabel>
                                                         <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
-                                                            <>{
+                                                            <><option>{`Select ${e.name}`}</option>
+                                                            {
                                                                 e.options?.map((item) => {
                                                                     return <option value={item.value}>{item.name}</option>
                                                                 })
                                                             }</>
                                                         </Form.Select>
+                                                    </FormGroup>
+                                                </Col>
+                                            case "empty":
+                                                return <Col lg={3} xl={3} md={3} sm={3} >
+                                                    <FormGroup className="mt-3">
+
                                                     </FormGroup>
                                                 </Col>
                                         }
@@ -595,7 +735,8 @@ export const NewVisaApplicationPage: React.FC = () => {
                                                             {e.name}
                                                         </FormLabel>
                                                         <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
-                                                            <>{
+                                                        <><option>{`Select ${e.name}`}</option>
+                                                        {
                                                                 e.options?.map((item) => {
                                                                     return <option value={item.value}>{item.name}</option>
                                                                 })
@@ -603,6 +744,31 @@ export const NewVisaApplicationPage: React.FC = () => {
                                                         </Form.Select>
                                                     </FormGroup>
                                                 </Col>
+                                                case "phoneNumber":
+                                                    return <Col lg={3} xl={3} md={3} sm={3} >
+                                                        <FormGroup className="mt-3">
+                                                            <FormLabel className="contact-lable custom-contact-lable">
+                                                                {e.name}
+                                                            </FormLabel>
+                                                            <div className="d-inline-block-2">
+                                                                <Form.Select className="country-code px-2" aria-label={`Select ${e.name} `} value={e.value} onChange={(v) => e.onChange(v.target.value, index)}>
+                                                                    <>{
+                                                                        e.options?.map((item) => {
+                                                                            return <option value={item.value}>{item.name}</option>
+                                                                        })
+                                                                    }</>
+                                                                </Form.Select>
+                                                                <input
+                                                                 name={e.name}
+                                                                 id={e.id}
+                                                                 placeholder={e.name}
+                                                                 disabled={e.disabled}
+                                                                 value={e.value}
+                                                                 onChange={(v) => e.onChange(v.target.value, index)}
+                                                                type="text" className="form-control custom-form-control form-control-2" aria-describedby="emailHelp"  />
+                                                            </div>
+                                                        </FormGroup>
+                                                    </Col>
                                         }
                                     }) : <></>
                                 }
@@ -637,7 +803,8 @@ export const NewVisaApplicationPage: React.FC = () => {
                                                             {e.name}
                                                         </FormLabel>
                                                         <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
-                                                            <>{
+                                                        <><option>{`Select ${e.name}`}</option>
+                                                            {
                                                                 e.options?.map((item) => {
                                                                     return <option value={item.value}>{item.name}</option>
                                                                 })
@@ -679,7 +846,8 @@ export const NewVisaApplicationPage: React.FC = () => {
                                                             {e.name}
                                                         </FormLabel>
                                                         <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
-                                                            <>{
+                                                        <><option>{`Select ${e.name}`}</option>
+                                                            {
                                                                 e.options?.map((item) => {
                                                                     return <option value={item.value}>{item.name}</option>
                                                                 })
@@ -721,7 +889,8 @@ export const NewVisaApplicationPage: React.FC = () => {
                                                             {e.name}
                                                         </FormLabel>
                                                         <Form.Select aria-label={`Select ${e.name} `} onChange={(v) => e.onChange(v.target.value, index)}>
-                                                            <>{
+                                                            <><option>{`Select ${e.name}`}</option>
+                                                            {
                                                                 e.options?.map((item) => {
                                                                     return <option value={item.value}>{item.name}</option>
                                                                 })

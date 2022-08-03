@@ -30,9 +30,9 @@ export const  PassportNavBarComponent : React.FC = () => {
             style={{ maxHeight: '100px', minHeight:'50px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Shedule Appointment</Nav.Link>
-            <Nav.Link href="#action2">Check Status</Nav.Link>
-            <Nav.Link href="#action3">Infromation</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/ChooseService">Services</Nav.Link>
+            <Nav.Link href="/">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         </Container>

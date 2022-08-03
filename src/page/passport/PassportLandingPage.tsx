@@ -6,6 +6,12 @@ import Col from 'react-bootstrap/Col';
 import '../../assets/css/passport/main.css';
 import { Link, useNavigate } from "react-router-dom";
 import PassportImage from "../../assets/images/chad_passport.png";
+import NewPassportImage from "../../assets/images/passport/NewPassport.png";
+import PassportPageRunoutImage from "../../assets/images/passport/PassportPageRunout.png";
+import LostorStolenPassportImage from "../../assets/images/passport/LostorStolenPassport.png";
+import ExpiredPassportImage from "../../assets/images/passport/ExpiredPassport.png";
+import CheckApplicatonStatus from "../../assets/images/passport/CheckApplicationStatus.png";
+import UpdatePassportDataImage from "../../assets/images/passport/UpdatePassportData.png";
 import { UserProfileComponent } from "components/Passport/UserProfileComponent";
 import { PassportCardComponent } from "components/Passport/PassportCardComponent";
 import PassportStatusResponse from "models/passport/PassportStatusResponse";
@@ -70,11 +76,11 @@ export const PassportLandingPage: React.FC = () => {
     });
 
     const checkPassportApplicationStatus = async () => {
-        var response = await checkPassportStatus();
+        //var response = await checkPassportStatus();
 
-        if (response.status == "success") {
-            navigoter("/PassportDetailStatusPage", { state: { isForCheckStatus: true, passportStatusResponse: response } });
-        }
+        //if (response.status == "success") {
+        navigoter("/PassportCheckStautsPage");
+        //}
     }
 
     return (<>
@@ -85,13 +91,27 @@ export const PassportLandingPage: React.FC = () => {
                     &emsp;&emsp;&emsp;&emsp;
                     <Col xl={1} lg={1} md={1} sm={1}></Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyText="Do you want to secure Chad Passport now? Provide all requested information and apply." bodyTitle="Start New Application" buttonText="Apply Now" onClick={() => { navigoter('/PassportNewApplicationPage') }}></PassportCardComponent>
+                        <PassportCardComponent imageSrc={CheckApplicatonStatus} bodyTitle="Check Application Status" bodyText="What is the status of my Chad Passport request? Provide all requested information and check now." buttonText="Check Now" onClick={() => { checkPassportApplicationStatus(); }}></PassportCardComponent>
                     </Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyTitle="Update existing passport" bodyText="Expried, damaged, page run out, data incorect Passprot?" buttonText="Start Now" onClick={() => { }}></PassportCardComponent>
+                        <PassportCardComponent imageSrc={NewPassportImage} bodyText="Do you want to secure Chad Passport now? Provide all requested information and apply." bodyTitle="New Passport" buttonText="Apply Now" onClick={() => { navigoter('/PassportNewApplicationPage', {state:{isNewPassport : true,  isUpdatePassport: false, isExpiredPassport: false, isPassportPageRunout: false, isPassportStolenOrLost: false}})}}></PassportCardComponent>
                     </Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyTitle="Check Status" bodyText="What is the status of my Chad Passport request? Provide all requested information and check now." buttonText="Check Now" onClick={() => { checkPassportApplicationStatus(); }}></PassportCardComponent>
+                        <PassportCardComponent imageSrc={UpdatePassportDataImage} bodyTitle="Update Passport" bodyText="What is the status of my Chad Passport request? Provide all requested information and check now." buttonText="Update now" onClick={() => { navigoter('/PassportNewApplicationPage', {state:{isNewPassport : false,  isUpdatePassport: true, isExpiredPassport: false, isPassportPageRunout: false, isPassportStolenOrLost: false}})}}></PassportCardComponent>
+                    </Col>
+                    <Col xl={1} lg={1} md={1} sm={1}></Col>
+                </Row>
+                <Row className="mt-5 pt-4">
+                    &emsp;&emsp;&emsp;&emsp;
+                    <Col xl={1} lg={1} md={1} sm={1}></Col>
+                    <Col xl={3} lg={3} md={3} sm={3}>
+                        <PassportCardComponent imageSrc={PassportPageRunoutImage} bodyText="Do you want to secure Chad Passport now? Provide all requested information and apply." bodyTitle="Passport Page Runout " buttonText="Upgrade Now" onClick={() => { navigoter('/PassportNewApplicationPage', {state:{isNewPassport : false,  isUpdatePassport: false, isExpiredPassport: false, isPassportPageRunout: true, isPassportStolenOrLost: false}})}}></PassportCardComponent>
+                    </Col>
+                    <Col xl={3} lg={3} md={3} sm={3}>
+                        <PassportCardComponent imageSrc={ExpiredPassportImage} bodyTitle="Expired/Damaged Passport" bodyText="What is the status of my Chad Passport request? Provide all requested information and check now." buttonText="Renew Now" onClick={() => { navigoter('/PassportNewApplicationPage', {state:{isNewPassport : false,  isUpdatePassport: false, isExpiredPassport: true, isPassportPageRunout: false, isPassportStolenOrLost: false}})}}></PassportCardComponent>
+                    </Col>
+                    <Col xl={3} lg={3} md={3} sm={3}>
+                        <PassportCardComponent imageSrc={LostorStolenPassportImage} bodyTitle="Lost/Stolen Passport" bodyText="What is the status of my Chad Passport request? Provide all requested information and check now." buttonText="Apply Again Now" onClick={() => { navigoter('/PassportNewApplicationPage', {state:{isNewPassport : false,  isUpdatePassport: false, isExpiredPassport: false, isPassportPageRunout: true, isPassportStolenOrLost: true}})}}></PassportCardComponent>
                     </Col>
                     <Col xl={1} lg={1} md={1} sm={1}></Col>
                 </Row>
@@ -161,6 +181,6 @@ export const PassportLandingPage: React.FC = () => {
                     </footer>
                 </div>
             </Col>
-        </Row>
+        </Row >
     </>);
 }

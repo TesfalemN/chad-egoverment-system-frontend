@@ -28,6 +28,7 @@ import {
 
 import { getMasterData } from "service/MasterDataService";
 import { MasterDataContext } from "App";
+import MasterDataResponse from "models/masterData/masterData";
 
 const LoginPage = () => {
   const navigoter = useNavigate();
@@ -69,8 +70,8 @@ const LoginPage = () => {
       setEmail(result.result?.email);
       setUserId(result.result._id);
       navigoter("/ChooseService");
-      var masterData =  await getMasterData();
-      setMasterData(masterData);
+      var masterDataResponse =  await getMasterData();
+      setMasterData(masterDataResponse);
     } else {
       return result.message;
     }

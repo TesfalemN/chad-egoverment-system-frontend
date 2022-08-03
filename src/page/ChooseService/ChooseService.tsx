@@ -6,6 +6,8 @@ import Col from 'react-bootstrap/Col';
 import '../../assets/css/passport/main.css';
 import { Link, useNavigate } from "react-router-dom";
 import PassportImage from "../../assets/images/chad_passport.png";
+import PassportBackgroundImage from "../../assets/images/passport/PassportBackground.png";
+import VisaApplicationImage from "../../assets/images/visa/VisaApplication.png";
 import BusinessImage from "../../assets/images/features/business.jpg";
 import BirthImage from "../../assets/images/features/birth.png";
 import { UserProfileComponent } from "components/ChooseService/ChooseServiceUserProfileComponent";
@@ -80,10 +82,10 @@ export const ChooseService: React.FC = () => {
                         <PassportCardComponent imageSrc={BusinessImage} bodyText="Do you want your Business Registered? Provide all requested information and apply." bodyTitle="Start Registering your Business" buttonText="Get Served" onClick={() => navigoter('/Business')}></PassportCardComponent>
                     </Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyText="Do you want to secure Chad Passport now? Provide all requested information and apply." bodyTitle="Start New Application for your passport" buttonText="Get Served" onClick={() => navigoter('/PassportLandingPage')}></PassportCardComponent>
+                        <PassportCardComponent imageSrc={PassportBackgroundImage} bodyText="Do you want to secure Chad Passport now? or Do you want to update your existing passport? Provide all requested information and apply." bodyTitle="Get Your Passport Services" buttonText="Get Served" onClick={() => navigoter('/PassportLandingPage')}></PassportCardComponent>
                     </Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Start New Application for your Visa" buttonText="Get Served" onClick={() => navigoter('/NewVisaApplicationPage')}></PassportCardComponent>
+                        <PassportCardComponent imageSrc={VisaApplicationImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Start New Application for your Visa" buttonText="Get Served" onClick={() => navigoter('/VisaLandingPage')}></PassportCardComponent>
                     </Col>
 
                     <Col xl={1} lg={1} md={1} sm={1}></Col>

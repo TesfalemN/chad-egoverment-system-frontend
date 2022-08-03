@@ -5,7 +5,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../../assets/css/passport/main.css';
 import { Link, useNavigate } from "react-router-dom";
-import PassportImage from "../../assets/images/chad_passport.png";
+import NewVisaApplicationImage from "../../assets/images/visa/NewVisaApplication.png";
+import CheckVisaStatusImage from "../../assets/images/visa/CheckStatusVisa.png";
+import ExtendVisaApplicationImage from "../../assets/images/visa/ExtendVisa.png";
 import { UserProfileComponent } from "components/Passport/UserProfileComponent";
 import { PassportCardComponent } from "components/Passport/PassportCardComponent";
 import PassportStatusResponse from "models/passport/PassportStatusResponse";
@@ -65,10 +67,21 @@ export const VisaLandingPage: React.FC = () => {
                     &emsp;&emsp;&emsp;&emsp;
                     <Col xl={1} lg={1} md={1} sm={1}></Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Start New Application" buttonText="Apply Now" onClick={() => { navigoter('/NewVisaApplicationPage') }}></PassportCardComponent>
+                        <PassportCardComponent imageSrc={NewVisaApplicationImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Start New Application" buttonText="Apply Now" onClick={() => { navigoter('/NewVisaApplicationPage') }}></PassportCardComponent>
                     </Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={PassportImage} bodyTitle="Check Status" bodyText="What is the status of my Chad Visa request? Provide all requested information and check now." buttonText="Check Now" onClick={() => { checkPassportApplicationStatus(); }}></PassportCardComponent>
+                        <PassportCardComponent imageSrc={ExtendVisaApplicationImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Extend Visa" buttonText="Apply Now" onClick={() => { navigoter('/NewVisaApplicationPage') }}></PassportCardComponent>
+                    </Col>
+                    <Col xl={3} lg={3} md={3} sm={3}>
+                        <PassportCardComponent imageSrc={CheckVisaStatusImage} bodyTitle="Check Status" bodyText="What is the status of my Chad Visa request? Provide all requested information and check now." buttonText="Check Now" onClick={() => { checkPassportApplicationStatus(); }}></PassportCardComponent>
+                    </Col>
+                    <Col xl={1} lg={1} md={1} sm={1}></Col>
+                </Row>
+                <Row className="mt-4">
+                    &emsp;&emsp;&emsp;&emsp;
+                    <Col xl={1} lg={1} md={1} sm={1}></Col>
+                    <Col xl={3} lg={3} md={3} sm={3}>
+                        <PassportCardComponent imageSrc={NewVisaApplicationImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Close Visa Application" buttonText="Procced Now" onClick={() => { navigoter('/NewVisaApplicationPage') }}></PassportCardComponent>
                     </Col>
                     <Col xl={1} lg={1} md={1} sm={1}></Col>
                 </Row>
