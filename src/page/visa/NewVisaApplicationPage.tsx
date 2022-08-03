@@ -9,9 +9,6 @@ import PassportApplicationRequest from "models/passport/PassportApplicationReque
 import { applyPassport } from "service/PassportService";
 import { useNavigate } from "react-router-dom";
 import { MasterDataContext } from "App";
-import VisaNavBarComponent from "components/Visa/VisaNavBarComponent";
-import NewVisaApplicationRequest from "models/visa/NewVisaApplicationRequest";
-import { applyVisa } from "service/VisaService";
 
 export const NewVisaApplicationPage: React.FC = () => {
     const navigoter = useNavigate();
@@ -57,51 +54,6 @@ export const NewVisaApplicationPage: React.FC = () => {
                 }
 
             },
-            {
-                name: 'Citizenship',
-                id: '',
-                type: '',
-                value: '',
-                formType: 'select',
-                options: masterData.nationalities[0]?.nationalities?.map((e) => ({
-                    name: e.nationalityEN,
-                    value: e.nationalityEN
-                })),
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateVisaInformationInput(value, index)
-                }
-
-            },
-            {
-                name: 'Person Image',
-                id: '',
-                type: 'file',
-                value: '',
-                formType: 'input',
-                options: masterData.nationalities[0]?.nationalities?.map((e) => ({
-                    name: e.nationalityEN,
-                    value: e.nationalityEN
-                })),
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateVisaInformationInput(value, index)
-                }
-
-            },
-            {
-                name: 'Passport Image',
-                id: '',
-                type: 'file',
-                value: '',
-                formType: 'input',
-                options: masterData.nationalities[0]?.nationalities?.map((e) => ({
-                    name: e.nationalityEN,
-                    value: e.nationalityEN
-                })),
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateVisaInformationInput(value, index)
-                }
-
-            },
         ],
         personInformationInputs: [
             {
@@ -118,8 +70,8 @@ export const NewVisaApplicationPage: React.FC = () => {
             {
                 name: 'Middle Name',
                 id: '',
-                type: 'text',
-                value: '',
+                type: '',
+                value: 'text',
                 formType: "input",
                 disabled: false, onChange: (value: string, index: number) => {
                     updatePersonalInformationInput(value, index)
@@ -128,8 +80,8 @@ export const NewVisaApplicationPage: React.FC = () => {
             {
                 name: 'last Name',
                 id: '',
-                type: 'text',
-                value: '',
+                type: '',
+                value: 'text',
                 formType: "input",
                 disabled: false, onChange: (value: string, index: number) => {
                     updatePersonalInformationInput(value, index)
@@ -215,7 +167,7 @@ export const NewVisaApplicationPage: React.FC = () => {
             {
                 name: 'Birth Place',
                 id: '',
-                type: 'text',
+                type: 'date',
                 value: '',
                 formType: "input",
                 disabled: false, onChange: (value: string, index: number) => {
@@ -246,7 +198,7 @@ export const NewVisaApplicationPage: React.FC = () => {
                 value: '',
                 formType: 'input',
                 disabled: false, onChange: (value: string, index: number) => {
-                    updateContactInformationInput(value, index)
+                    updatePersonalInformationInput(value, index)
                 }
 
             },
@@ -257,7 +209,7 @@ export const NewVisaApplicationPage: React.FC = () => {
                 value: '',
                 formType: 'input',
                 disabled: false, onChange: (value: string, index: number) => {
-                    updateContactInformationInput(value, index)
+                    updatePersonalInformationInput(value, index)
                 }
 
             },
@@ -272,23 +224,12 @@ export const NewVisaApplicationPage: React.FC = () => {
                     value: e.countryName
                 })),
                 disabled: false, onChange: (value: string, index: number) => {
-                    updateContactInformationInput(value, index)
+                    updatePersonalInformationInput(value, index)
                 }
 
             },
         ],
         homeInformationInputs: [
-            {
-                name: 'Passport Type',
-                id: '',
-                type: 'Ordinary Passport',
-                value: '',
-                formType: 'input',
-                disabled: true, onChange: (value: string, index: number) => {
-                    updateHomeInformationInput(value, index)
-                }
-
-            },
             {
                 name: 'Passport Number',
                 id: '',
@@ -303,7 +244,7 @@ export const NewVisaApplicationPage: React.FC = () => {
             {
                 name: 'Passport Issue Date',
                 id: '',
-                type: 'date',
+                type: '',
                 value: '',
                 formType: 'input',
                 disabled: false, onChange: (value: string, index: number) => {
@@ -312,32 +253,55 @@ export const NewVisaApplicationPage: React.FC = () => {
 
             },
             {
-                name: 'Passport Expiry Date',
-                id: '',
-                type: 'date',
-                value: '',
-                formType: 'input',
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateHomeInformationInput(value, index)
-                }
-
-            },
-            {
-                name: 'Passport Issuing Country',
+                name: 'State',
                 id: '',
                 type: '',
                 value: '',
-                formType: 'select',
+                formType: 'input',
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateHomeInformationInput(value, index)
+                }
+
+            },
+            {
+                name: 'Zone',
+                id: '',
+                type: '',
+                value: '',
+                formType: 'input',
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateHomeInformationInput(value, index)
+                }
+
+            },
+            {
+                name: 'Street',
+                id: '',
+                type: '',
+                value: '',
+                formType: 'input',
+                disabled: false, onChange: (value: string, index: number) => {
+                    updateHomeInformationInput(value, index)
+                }
+
+            },
+            {
+                name: 'House number',
+                id: '',
+                type: '',
+                value: '',
+                formType: 'input',
                 options: masterData.countryLists[0]?.countryList?.map((e) => ({
                     name: e.countryName,
                     value: e.countryName
                 })),
                 disabled: false, onChange: (value: string, index: number) => {
-                    updateVisaInformationInput(value, index)
+                    updateHomeInformationInput(value, index)
                 }
+
             },
             {
-                name: 'Issuing Authority',
+                name: 'Po. Box',
                 id: '',
                 type: '',
                 value: '',
@@ -350,9 +314,9 @@ export const NewVisaApplicationPage: React.FC = () => {
         ],
         officeInformationInputs: [
             {
-                name: 'Arrival Date',
+                name: 'City',
                 id: '',
-                type: 'date',
+                type: '',
                 value: '',
                 formType: 'input',
                 options: masterData.countryLists[0]?.countryList?.map((e) => ({
@@ -365,7 +329,7 @@ export const NewVisaApplicationPage: React.FC = () => {
 
             },
             {
-                name: 'Visa Validity',
+                name: 'Delivery Site',
                 id: '',
                 type: '',
                 value: '',
@@ -376,98 +340,26 @@ export const NewVisaApplicationPage: React.FC = () => {
 
             },
             {
-                name: 'Departure Country',
+                name: 'Appointment Date',
                 id: '',
                 type: 'date',
                 value: '',
-                formType: 'select',
-                options: masterData.countryLists[0]?.countryList?.map((e) => ({
-                    name: e.countryName,
-                    value: e.countryName
-                })),
+                formType: 'input',
                 disabled: false, onChange: (value: string, index: number) => {
                     updateOfficeInformationInput(value, index)
                 }
+
             },
             {
-                name: 'Departure City',
+                name: 'Appointment Time',
                 id: '',
-                type: 'text',
+                type: 'time',
                 value: '',
                 formType: 'input',
                 disabled: false, onChange: (value: string, index: number) => {
                     updateOfficeInformationInput(value, index)
                 }
-            },
-            {
-                name: 'Airline Name',
-                id: '',
-                type: 'text',
-                value: '',
-                formType: 'input',
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateOfficeInformationInput(value, index)
-                }
-            },
-            {
-                name: 'Flight Number',
-                id: '',
-                type: 'text',
-                value: '',
-                formType: 'input',
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateOfficeInformationInput(value, index)
-                }
-            },
-            {
-                name: 'Arrival Adress Accomodation Type',
-                id: '',
-                type: 'text',
-                value: '',
-                formType: 'input',
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateOfficeInformationInput(value, index)
-                }
-            },
-            {
-                name: 'Arrival Adress Accomodation Name',
-                id: '',
-                type: 'text',
-                value: '',
-                formType: 'input',
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateOfficeInformationInput(value, index)
-                }
-            },
-            {
-                name: 'Arrival Adress Accomodation City',
-                id: '',
-                type: 'text',
-                value: '',
-                formType: 'input',
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateOfficeInformationInput(value, index)
-                }
-            },
-            {
-                name: 'Arrival Adress Accomodation Phone Number',
-                id: '',
-                type: 'tel',
-                value: '',
-                formType: 'input',
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateOfficeInformationInput(value, index)
-                }
-            },
-            {
-                name: 'Arrival Adress Accomodation Street Address',
-                id: '',
-                type: 'tel',
-                value: '',
-                formType: 'input',
-                disabled: false, onChange: (value: string, index: number) => {
-                    updateOfficeInformationInput(value, index)
-                }
+
             },
         ]
     });
@@ -538,7 +430,7 @@ export const NewVisaApplicationPage: React.FC = () => {
             console.log(userState.stepIndex)
         }
         else {
-            await submitVisaInformation();
+            await submitPassportInformation();
         }
     }
 
@@ -553,65 +445,48 @@ export const NewVisaApplicationPage: React.FC = () => {
         }
     }
 
-    const submitVisaInformation = async () => {
-        var newVisaApplicationRequest = new NewVisaApplicationRequest();
-        newVisaApplicationRequest = {
-            visaApplication: {
-                visaType: userState.vsiaInformationInputs[0].value ?? "",
-                citizenship: userState.vsiaInformationInputs[1].value ?? "",
-                personImage: "",
-                passportImage: "",
-                personalInformation: {
-                    personalInfo: {
-                        firstName: userState.personInformationInputs[0].value ?? "",
-                        middleName: userState.personInformationInputs[1].value ?? "",
-                        lastName: userState.personInformationInputs[2].value ?? "",
-                        gender: userState.personInformationInputs[3].value ?? "",
-                        dateOfBirth: userState.personInformationInputs[4].value ?? "",
-                        nationality: userState.personInformationInputs[5].value ?? "",
-                        phoneNumber: userState.personInformationInputs[6].value ?? "",
-                        email: userState.personInformationInputs[7].value ?? "",
-                        birthPlace: userState.personInformationInputs[8].value ?? "",
-                        birthCountry: userState.personInformationInputs[9].value ?? "",
-                        occupation: userState.personInformationInputs[10].value ?? "",
-                    },
-                    permanentAddress: {
-                        street: userState.contactInformationInputs[0].value ?? "",
-                        city: userState.contactInformationInputs[1].value ?? "",
-                        country: userState.contactInformationInputs[1].value ?? "",
-                    }
-                },
-                passportDetail: {
-                    passportType: userState.homeInformationInputs[0].value ?? "",
-                    passportNumber: userState.homeInformationInputs[1].value ?? "",
-                    passportIssueDate: userState.homeInformationInputs[2].value ?? "",
-                    passportExpiryDate: userState.homeInformationInputs[3].value ?? "",
-                    passportIssuingCountry: userState.homeInformationInputs[4].value ?? "",
-                    issuingAuthority: userState.homeInformationInputs[5].value ?? "",
-                },
-                arrivalInformation: {
-                    arrivalDate: userState.officeInformationInputs[0].value ?? "",
-                    visaValidity: userState.officeInformationInputs[1].value ?? "",
-                    departureCountry: userState.officeInformationInputs[2].value ?? "",
-                    departureCity: userState.officeInformationInputs[3].value ?? "",
-                    airlineName: userState.officeInformationInputs[4].value ?? "",
-                    flightNumber: userState.officeInformationInputs[5].value ?? "",
-                    arrivalAdress: {
-                        accomodationType: userState.officeInformationInputs[6].value ?? "",
-                        accomodationName: userState.officeInformationInputs[7].value ?? "",
-                        accomodationCity: userState.officeInformationInputs[8].value ?? "",
-                        accomodationPhoneNo: userState.officeInformationInputs[9].value ?? "",
-                        accomodationStreetAddress: userState.officeInformationInputs[10].value ?? "",
-                    }
-                }
+    const submitPassportInformation = async () => {
+        var passportApplicationReqeust = new PassportApplicationRequest();
+        passportApplicationReqeust = {
+            type: "new",
+            personalInformation: {
+                first_name: userState.personInformationInputs[0].value ?? "",
+                middle_name: userState.personInformationInputs[1].value  ?? "",
+                last_name: userState.personInformationInputs[2].value  ?? "",
+                nationality: userState.personInformationInputs[3].value  ?? "",
+                occupation: userState.personInformationInputs[4].value  ?? "",
+                hair_color: userState.personInformationInputs[5].value  ?? "",
+                gender: userState.personInformationInputs[6].value  ?? "",
+                martial_status: userState.personInformationInputs[7].value  ?? "",
+                height: userState.personInformationInputs[8].value  ?? "",
+                eye_color: userState.personInformationInputs[9].value  ?? "",
+                phone_number: userState.contactInformationInputs[0].value,
+                email: userState.contactInformationInputs[1].value,
+                date_of_birth: userState.contactInformationInputs[2].value,
+                birth_place: userState.contactInformationInputs[3].value,
+                birth_certificate_id: userState.contactInformationInputs[4].value,
+            },
+            userAddress: {
+                region: userState.homeInformationInputs[0].value,
+                city: userState.homeInformationInputs[1].value,
+                state: userState.homeInformationInputs[2].value,
+                zone: userState.homeInformationInputs[3].value,
+                street: userState.homeInformationInputs[4].value,
+                house_number: userState.homeInformationInputs[5].value,
+                po_box: userState.homeInformationInputs[6].value,
+            },
+            officeAddress: {
+                city: userState.officeInformationInputs[0].value,
+                delivery_site: userState.officeInformationInputs[1].value,
+                appointment_date: userState.officeInformationInputs[2].value,
+                appointment_time: userState.officeInformationInputs[3].value,
             }
         }
 
-        console.log(newVisaApplicationRequest);
-        var response = await applyVisa(newVisaApplicationRequest);
+        var response = await applyPassport(passportApplicationReqeust);
 
         if (response?.status == "success") {
-            navigoter('/VisaLandingPage', { state: { isForCheckStatus: false, passportApplicationResponse: response } });
+            navigoter('/PassportDetailStatusPage', { state: { isForCheckStatus: false, passportApplicationResponse: response } });
         }
     }
     return (<>
@@ -684,12 +559,6 @@ export const NewVisaApplicationPage: React.FC = () => {
                                                                 })
                                                             }</>
                                                         </Form.Select>
-                                                    </FormGroup>
-                                                </Col>
-                                            case "empty":
-                                                return <Col lg={3} xl={3} md={3} sm={3} >
-                                                    <FormGroup className="mt-3">
-
                                                     </FormGroup>
                                                 </Col>
                                         }

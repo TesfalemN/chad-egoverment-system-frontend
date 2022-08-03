@@ -7,11 +7,10 @@ import { getToken } from "./shared/LocalStorage";
 
 export async function applyPassport(passportApplicationRequest : PassportApplicationRequest) {
     var passportApplicationResponse = new PassportApplicationResponse();
-    console.log(passportApplicationRequest)
     var response = await HttpService.postService(
         passportApplicationRequest,
         Keys.passportApplicationRelativeUrl,
-        `${getToken()}`,
+        `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmQ1NTc4NWM1ZWJkZTBlYjg0ZGJlMDciLCJpYXQiOjE2NTgyMTk0NjQsImV4cCI6MTY1ODMwNTg2NH0.OVeDPVc6dronM4BmPoeaAkafr9OgDCeQWM9NWoYQKQA`,
         "",
     ).catch((e) => {
     });
@@ -25,13 +24,11 @@ export async function applyPassport(passportApplicationRequest : PassportApplica
     return passportApplicationResponse;
 }
 
-export async function checkPassportStatus(checkPassportStatus? : any) {
-    console.log(checkPassportStatus);
+export async function checkPassportStatus() {
     var passportStatusResponse = new PassportStatusResponse();
-    var response = await HttpService.postService(
-        checkPassportStatus,
+    var response = await HttpService.getService(
         Keys.passportStatusRelativeUrl,
-        `${getToken()}`,
+        `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmQ1NTc4NWM1ZWJkZTBlYjg0ZGJlMDciLCJpYXQiOjE2NTgyMTk0NjQsImV4cCI6MTY1ODMwNTg2NH0.OVeDPVc6dronM4BmPoeaAkafr9OgDCeQWM9NWoYQKQA`,
         "",
     ).catch((e) => {
     });
