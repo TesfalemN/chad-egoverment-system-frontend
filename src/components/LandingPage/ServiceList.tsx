@@ -125,7 +125,7 @@ const ServiceList = () => {
           "E Health System for better health for Chad Citizens",
         titlePrimary: false,
         icon: "",
-        url: "/Login",
+        url: "e-health",
         child: [
           {
             btitle: "Health",
