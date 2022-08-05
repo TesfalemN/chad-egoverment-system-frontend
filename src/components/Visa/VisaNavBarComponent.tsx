@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 export const  VisaNavBarComponent : React.FC = () => {
   return (
     <>
-      <Navbar bg="light shadow" variant="light" sticky="top" className="remove-print">
+      <Navbar bg="shadow" variant="light" sticky="top" className="remove-print">
         <Container>
           <Navbar.Brand href="#home">
             <img

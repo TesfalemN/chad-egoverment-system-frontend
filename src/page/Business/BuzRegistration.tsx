@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import {
   Button,
   Col,
@@ -11,7 +11,7 @@ import {
   Row,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-
+import { Loading } from "../../components/shared/Loading";
 import Feature4 from "assets/images/features/img-4.png";
 import LogoDark from "assets/images/logo-dark.png";
 import * as Yup from "yup";
@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import BusinessRegistrationReqeust from "models/business/BusinessRegistrationReqeust";
 import { PassportNavBarComponent } from "../../components/Business/BusinessNavBarComponent";
 import { BusinessRegistration } from "service/BusinessService";
+import { MasterDataContext } from "App";
 import { getEmail, getUserId } from "service/shared/LocalStorage";
 import axios from "axios";
 import { set_user_data } from "store/actions";
@@ -29,7 +30,9 @@ interface RootState {
 
 const BuzRegistration = () => {
   const navigoter = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
+  const { masterData } = useContext(MasterDataContext);
   const dispatch = useDispatch();
   const [showHide, setSetShowHide] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -42,10 +45,12 @@ const BuzRegistration = () => {
   const users = (state: RootState) => state.user;
   const datas = useSelector(users);
 
-  const current = new Date();
-  const date = `${current.getDate()}/${
-    current.getMonth() + 1
-  }/${current.getFullYear()}`;
+  var dateObj = new Date();
+  var month = dateObj.getUTCMonth() + 1; //months from 1-12
+  var day = dateObj.getUTCDate();
+  var year = dateObj.getUTCFullYear();
+  
+   var newdate = year + "/" + month + "/" + day;
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const validationSchema = Yup.object().shape({
@@ -301,21 +306,20 @@ const BuzRegistration = () => {
                                   </FormGroup>
                                   <FormGroup>
                                     <FormLabel htmlFor="dateofissuance">
-                                      Date of Issuance
+                                      Date of Request
                                     </FormLabel>
                                     <FormControl
-                                      type="date"
+                                      type="text"
                                       name="dateofissuance"
-                                      value={formik.values.dateofissuance}
+                                      value={newdate}
                                       onChange={formik.handleChange}
                                       className="form-control"
                                       id="dateofissuance"
-                                      isInvalid={!!formik.errors.dateofissuance}
+                                    
+                                  
                                     />
 
-                                    <Form.Control.Feedback type="invalid">
-                                      {formik.errors.dateofissuance}
-                                    </Form.Control.Feedback>
+                           
                                   </FormGroup>
                                   <FormGroup>
                                     <FormLabel htmlFor="nationality">

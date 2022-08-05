@@ -424,15 +424,15 @@ export const Birth: React.FC = () => {
     var birthApplicationReqeust = new BirthCerticicateRequest();
     birthApplicationReqeust = {
       birthCertificate: {
-        first_name: userState.personInformationInputs[0].value,
-        middle_name: userState.personInformationInputs[1].value,
-        last_name: userState.personInformationInputs[2].value,
-        date_of_birth: userState.personInformationInputs[3].value,
+        firstName: userState.personInformationInputs[0].value,
+        middleName: userState.personInformationInputs[1].value,
+        lastName: userState.personInformationInputs[2].value,
+        dateOfBirth: userState.personInformationInputs[3].value,
         gender: userState.personInformationInputs[4].value,
         nationality: userState.personInformationInputs[5].value,
-        phone_number: userState.personInformationInputs[6].value,
+        phoneNumber: userState.personInformationInputs[6].value,
         email: userState.personInformationInputs[7].value,
-        birth_place: {
+        birthPlace: {
           country: userState.personInformationInputs[8].value,
           province: "dfgdfg",
           subProvince: "",

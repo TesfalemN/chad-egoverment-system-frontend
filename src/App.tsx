@@ -25,6 +25,8 @@ import { VisaLandingPage } from "page/visa/VisaLandingPage";
 import { VisaCheckStautsPage } from "page/visa/VisaCheckStatusPage";
 import { PassportCheckStautsPage } from "page/passport/PassportCheckStatusPage";
 import { BirthCertificate } from "page/Birth/BirthCertificate";
+import { CloseOrExtendVisaApplicationPage } from "page/visa/CloseOrExtendVisaApplicationPage";
+import { VisaDetailStatusPage } from "page/visa/VisaDetailStatusPage";
 
 const masterDataDefualtValue = {
   masterData:  new MasterDataResponse(),
@@ -53,11 +55,12 @@ function App() {
             path="PassportNewApplicationPage"
             element={<PassportNewApplicationPage />}
           />
+          
           <Route path="ChooseService" element={<ChooseService />} />
           <Route
             path="PassportDetailStatusPage"
             element={<PassportDetailStatusPage isForCheckStatus={false} />}
-          />
+          />   
           <Route
             path="BusinessDetailStatusPage/:id"
             element={<BusinessDetailsPage />}
@@ -70,10 +73,12 @@ function App() {
           <Route path="BirthLandingPage" element={<BirthLandingPage />} />
           <Route path="Business" element={<Business />} />
           <Route path="NewVisaApplicationPage" element={<NewVisaApplicationPage />} />
+          <Route path="VisaDetailStatusPage" element={<VisaDetailStatusPage isForCheckStatus={false} />} />
           <Route path="BirthCertificateDetail" element={<BirthDetailsPage />} />
           <Route path="VisaLandingPage" element={<VisaLandingPage />} />
           <Route path="VisaCheckStautsPage" element={<VisaCheckStautsPage />} />
           <Route path="PassportCheckStautsPage" element={<PassportCheckStautsPage />} />
+          <Route path="CloseOrExtendVisaApplicationPage" element={<CloseOrExtendVisaApplicationPage />} />
           <Route path="/" element={<LandingPage />} />
           <Route
             path="BirthCertificateStatus"

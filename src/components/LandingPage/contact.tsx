@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 
 import HomeUrl from "assets/images/home-border.png";
-import Feature from "assets/images/features/img-3.png";
+import Feature from "assets/images/features/image3.jpg";
 
 const Contact = () => {
   return (
@@ -24,30 +24,25 @@ const Contact = () => {
                   Tell us what you feel about the service!
                 </h3>
                 <p className="text-muted f-17 mt-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos suscipit modi quisquam sint 
-                  <br/>blanditiis quaerat illum nisi culpa! Quasi quos minima beatae? Porro corrupti totam explicabo, ratione consectetur dicta nisi!
-                </p>
+                We host impactful events both in our centre and online for government. You’ll get an access to Chad E-Government System. <br />
+                If you have anything to say, Feel free to Reach Us Here!      </p>
                 <img src={HomeUrl} height="15" className="mt-3" alt="" />
               </div>
             </Col>
           </Row>
           <Row className="mt-5 pt-4">
             <Col lg={6}>
-              <div className="mt-4 home-img text-center">
-                <div className="animation-2"></div>
-                <div className="animation-3"></div>
-                <img src={Feature} className="img-fluid" alt="" />
-              </div>
+                <img src={Feature} className="h-100 img-fluid" style={{objectFit: "cover"}} alt="" />
             </Col>
             <Col lg={6}>
               <div className="custom-form mt-4">
                 <div id="message"></div>
-                <Form method="post" name="contact-form" id="contact-form">
+                <Form>
                   <Row>
                     <Col lg={6}>
                       <FormGroup className="mt-3">
-                        <FormLabel className="contact-lable">
-                          First Name
+                        <FormLabel>
+                        First Name
                         </FormLabel>
                         <FormControl
                           name="name"
@@ -59,7 +54,7 @@ const Contact = () => {
                     </Col>
                     <Col lg={6}>
                       <FormGroup className="mt-3">
-                        <FormLabel className="contact-lable">
+                        <FormLabel>
                           Last Name
                         </FormLabel>
                         <FormControl
@@ -74,7 +69,7 @@ const Contact = () => {
                   <Row>
                     <Col lg={12}>
                       <FormGroup className="mt-3">
-                        <FormLabel className="contact-lable">
+                        <FormLabel>
                           Email Address
                         </FormLabel>
                         <FormControl
@@ -89,7 +84,7 @@ const Contact = () => {
                   <Row>
                     <Col lg={12}>
                       <FormGroup className="mt-3">
-                        <FormLabel className="contact-lable">
+                        <FormLabel>
                           Your Message
                         </FormLabel>
                         <FormControl
@@ -109,7 +104,6 @@ const Contact = () => {
                         color="primary"
                         className="submitBnt btn btn-primary btn-round"
                         value="Send Message"
-                        type="submit"
                         style={{ width: "auto", color: "#fff" }}
                       />{" "}
                       <div id="simple-msg"></div>

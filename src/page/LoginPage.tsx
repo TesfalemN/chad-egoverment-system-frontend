@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Button,
   Col,
@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
-import Feature4 from "assets/images/features/img-4.png";
+import Feature4 from "assets/images/features/image7.jpg";
 import LogoDark from "assets/images/logo-dark.png";
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -29,18 +29,20 @@ import {
 import { getMasterData } from "service/MasterDataService";
 import { MasterDataContext } from "App";
 import MasterDataResponse from "models/masterData/masterData";
+import { Loading } from "components/shared/Loading";
 
 const LoginPage = () => {
   const navigoter = useNavigate();
   const { masterData, setMasterData } = useContext(MasterDataContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .required("this filed is required")
-      .min(1, "this filed cant be empty")
-      .email("this must be email address")
-      .min(1, "this filed cant be empty"),
-    password: Yup.string().required("this filed is required"),
+      .required("Please enter Email Adresse")
+      .min(1, "Email Adresse cant be empty")
+      .email("Please enter a valid Email Adresse")
+      .min(1, "Email Adresse cant be empty"),
+    password: Yup.string().required("Please enter password"),
   });
   const formik = useFormik({
     initialValues: {
@@ -49,7 +51,9 @@ const LoginPage = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values, { setFieldError }) => {
+      setIsLoading(true);
       var result = await loginUser();
+      setIsLoading(false);
       if (result) {
         setFieldError("password", result);
       }
@@ -69,8 +73,9 @@ const LoginPage = () => {
       setLastName(result.result?.last_name);
       setEmail(result.result?.email);
       setUserId(result.result._id);
+      setIsLoading(false);
       navigoter("/ChooseService");
-      var masterDataResponse =  await getMasterData();
+      var masterDataResponse = await getMasterData();
       setMasterData(masterDataResponse);
     } else {
       return result.message;
@@ -82,7 +87,7 @@ const LoginPage = () => {
       {" "}
       <div className="account-home-btn d-none d-sm-block">
         <Link to="/" className="text-primary">
-          <i className="mdi mdi-home h1"></i>
+          <i className="mdi mdi-home h3"></i>
         </Link>
       </div>
       <section className="bg-account-pages vh-100">
@@ -92,32 +97,20 @@ const LoginPage = () => {
               <Row>
                 <Col lg={12}>
                   <div className="login-box">
-                    <Row className="align-items-center no-gutters">
+                    <Row className="">
                       <Col lg={6}>
-                        <div className="bg-light">
-                          <div className="row justify-content-center">
-                            <div className="col-lg-10">
-                              <div className="home-img login-img text-center d-none d-lg-inline-block">
-                                <div className="animation-2"></div>
-                                <div className="animation-3"></div>
-                                <img
-                                  src={Feature4}
-                                  className="img-fluid"
-                                  alt=""
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        <img
+                          src={Feature4}
+                          className="h-100 img-fluid" style={{ objectFit: "cover" }}
+                          alt=""
+                        />
                       </Col>
                       <Col lg={6}>
                         <Row className="justify-content-center">
                           <Col lg={11}>
                             <div className="p-4">
                               <div className="text-center mt-3">
-                                <Link to="#">
-                                  <h5>Service for every citizens</h5>
-                                </Link>
+                                <h5>Service for every citizens</h5>
                                 <p className="text-muted mt-3">
                                   Sign in to access E-service.
                                 </p>
@@ -125,7 +118,7 @@ const LoginPage = () => {
                               <div className="p-3 custom-form">
                                 <Form onSubmit={formik.handleSubmit}>
                                   <FormGroup>
-                                    <FormLabel htmlFor="email">email</FormLabel>
+                                    <FormLabel htmlFor="email">Email Address</FormLabel>
                                     <FormControl
                                       type="text"
                                       className="form-control"
@@ -141,10 +134,22 @@ const LoginPage = () => {
                                       {formik.errors.email}
                                     </Form.Control.Feedback>
                                   </FormGroup>
+                                  <br />
                                   <FormGroup>
-                                    <FormLabel htmlFor="password">
-                                      Password
-                                    </FormLabel>
+                                    <div className="form-label">
+                                      <div style={{ display: "flex" }}>
+                                        <div>Password </div>
+                                        <div className="text-center f-14" style={{ marginLeft: "auto", }}>
+                                          <Link
+                                            to="/ForPassword"
+                                            className="text-dark"
+                                          >
+                                            <i className="mdi mdi-lock"></i> Forgot
+                                            your password?
+                                          </Link>
+                                        </div>
+                                      </div>
+                                    </div>
                                     <FormControl
                                       type="password"
                                       className="form-control"
@@ -161,6 +166,7 @@ const LoginPage = () => {
                                     </Form.Control.Feedback>
                                   </FormGroup>
 
+
                                   <div className="mt-3">
                                     <Button
                                       color="primary"
@@ -170,26 +176,10 @@ const LoginPage = () => {
                                         console.log(formik.errors);
                                       }}
                                     >
-                                      Log In
+                                      {
+                                        isLoading ? <Loading text={"Please wait"} ></Loading> : "Login"
+                                      }
                                     </Button>{" "}
-                                  </div>
-                                  <div className="mt-4 pt-1 mb-0 text-center">
-                                    <Link
-                                      to="/ForPassword"
-                                      className="text-dark"
-                                    >
-                                      <i className="mdi mdi-lock"></i> Forgot
-                                      your password?
-                                    </Link>
-                                  </div>
-                                  <div className="mt-4 pt-1 mb-0 text-center">
-                                    <Link
-                                      to="/ChooseService"
-                                      className="text-dark"
-                                    >
-                                      <i className="mdi mdi-lock"></i> Forgot
-                                      your password?
-                                    </Link>
                                   </div>
                                 </Form>
                                 <div className="mt-4 pt-1 mb-0 text-center">

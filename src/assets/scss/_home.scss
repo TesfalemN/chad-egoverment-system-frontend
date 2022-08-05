@@ -17,10 +17,9 @@
 
 .bg-home {
   position: relative;
-  padding: 240px 0px 240px 0px;
+  padding: 150px 0px 120px 0px;
   border-radius: 0px 0px 0px 450px;
 }
-
 .home-badge{
   p{
     background-color: $light;
@@ -53,6 +52,13 @@
   }
 }
 
+.on-hover:hover{
+  color: $white!important;
+  background-color: $primary!important;
+  padding: 10px 20px 10px 20px;
+  border-radius: 30px;
+  transition: 500ms;
+}
 
 .home-img{
   .animation-1{
@@ -92,6 +98,63 @@
   }  
 
 }
+
+.lds-loading {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+}
+.lds-loading div {
+  position: absolute;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-loading div:nth-child(1) {
+  left: 8px;
+  animation: lds-loading1 0.6s infinite;
+}
+.lds-loading div:nth-child(2) {
+  left: 8px;
+  animation: lds-loading2 0.6s infinite;
+}
+.lds-loading div:nth-child(3) {
+  left: 32px;
+  animation: lds-loading2 0.6s infinite;
+}
+.lds-loading div:nth-child(4) {
+  left: 56px;
+  animation: lds-loading3 0.6s infinite;
+}
+@keyframes lds-loading1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-loading3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-loading2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+
 
 
 

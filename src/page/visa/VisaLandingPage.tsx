@@ -35,28 +35,24 @@ export const VisaLandingPage: React.FC = () => {
                     "Applicants for change of Visa data must fulfill the following requirements.",
             },
             {
-                id: "service4",
+                id: "service5",
                 icon: "",
-                title: "Visa Visa",
+                title: "Extend Visa",
                 description:
-                    "Visa Passport applicants must fulfill the following requirements.",
+                    "For applicants of to extend Visa must fulfill the following requirements.",
             },
             {
                 id: "service5",
                 icon: "",
-                title: "Damaged Visa",
+                title: "Close Visa",
                 description:
-                    "For applicants of damaged Visa must fulfill the following requirements.",
+                    "For applicants to close Visa must fulfill the following requirements.",
             },
         ],
     });
 
     const checkPassportApplicationStatus = async () => {
-        //var response = await checkPassportStatus();
-
-        //if (response.status == "success") {
             navigoter("/VisaCheckStautsPage");
-        //}
     }
 
     return (<>
@@ -69,27 +65,27 @@ export const VisaLandingPage: React.FC = () => {
                     <Col xl={3} lg={3} md={3} sm={3}>
                         <PassportCardComponent imageSrc={NewVisaApplicationImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Start New Application" buttonText="Apply Now" onClick={() => { navigoter('/NewVisaApplicationPage') }}></PassportCardComponent>
                     </Col>
-                    {/* <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={ExtendVisaApplicationImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Extend Visa" buttonText="Apply Now" onClick={() => { navigoter('/NewVisaApplicationPage') }}></PassportCardComponent>
-                    </Col> */}
+                    <Col xl={3} lg={3} md={3} sm={3}>
+                        <PassportCardComponent imageSrc={ExtendVisaApplicationImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Extend Visa" buttonText="Apply Now" onClick={() => { navigoter('/CloseOrExtendVisaApplicationPage' , {state :{  isCloseVisa : false, isExtendVisa : true}} ) }}></PassportCardComponent>
+                    </Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
                         <PassportCardComponent imageSrc={CheckVisaStatusImage} bodyTitle="Check Status" bodyText="What is the status of my Chad Visa request? Provide all requested information and check now." buttonText="Check Now" onClick={() => { checkPassportApplicationStatus(); }}></PassportCardComponent>
                     </Col>
                     <Col xl={1} lg={1} md={1} sm={1}></Col>
                 </Row>
-                {/* <Row className="mt-4">
+                <Row className="mt-4">
                     &emsp;&emsp;&emsp;&emsp;
                     <Col xl={1} lg={1} md={1} sm={1}></Col>
                     <Col xl={3} lg={3} md={3} sm={3}>
-                        <PassportCardComponent imageSrc={NewVisaApplicationImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Close Visa Application" buttonText="Procced Now" onClick={() => { navigoter('/NewVisaApplicationPage') }}></PassportCardComponent>
+                        <PassportCardComponent imageSrc={NewVisaApplicationImage} bodyText="Do you want to secure Chad Visa now? Provide all requested information and apply." bodyTitle="Close Visa Application" buttonText="Procced Now" onClick={() => { navigoter('/CloseOrExtendVisaApplicationPage', {state :{  isCloseVisa : true, isExtendVisa : false}}) }}></PassportCardComponent>
                     </Col>
                     <Col xl={1} lg={1} md={1} sm={1}></Col>
-                </Row> */}
+                </Row>
                 <Row className='mt-5 pt-4'>
                     <Col lg="12">
                         <div className="title-box text-center">
                             <h3 className="title-heading mt-4">
-                                HOW TO APPLY FOR PASSPORT{" "}
+                                HOW TO APPLY FOR Visa{" "}
                             </h3>
                             <p className="text-muted f-17 mt-3">
                                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae earum rem corporis necessita <br /> fringilla auctor In
@@ -129,9 +125,8 @@ export const VisaLandingPage: React.FC = () => {
                                 <div className="col-sm-6 col-md-3 item">
                                     <h3>Services</h3>
                                     <ul>
-                                        <li><a href="#">New Passprot</a></li>
-                                        <li><a href="#">Check status</a></li>
-                                        <li><a href="#">Information</a></li>
+                                        <li><a href="/NewVisaApplicationPage">New Visa</a></li>
+                                        <li><a href="/VisaCheckStautsPage">Check status</a></li>
                                     </ul>
                                 </div>
                                 <div className="col-sm-6 col-md-3 item">
@@ -141,7 +136,7 @@ export const VisaLandingPage: React.FC = () => {
                                     </ul>
                                 </div>
                                 <div className="col-md-6 item text">
-                                    <h3>Chad Online Passpassport Applicaiton</h3>
+                                    <h3>Chad Online Visa Applicaiton</h3>
                                     <p>..................................................................................................</p>
                                 </div>
                                 <div className="col item social"><a href="#"><i className="icon ion-social-facebook"></i></a><a href="#"><i className="icon ion-social-twitter"></i></a><a href="#"><i className="icon ion-social-snapchat"></i></a><a href="#"><i className="icon ion-social-instagram"></i></a></div>

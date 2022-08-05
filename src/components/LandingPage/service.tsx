@@ -10,23 +10,23 @@ const Service = () => {
       {
         id: "service1",
         icon: "mdi-register",
-        title: "Buz Registration",
+        title: "Experience Chad digitalisation",
         description:
-          "Quisque rhoncus lectus ut lectus hendrerit at convallis lorem ornare pellentesque lobortis hendrerit mattis.",
+          "‎ ",
       },
       {
         id: "service2",
         icon: "",
-        title: "Passport Services",
+        title: "Gain insights on how to build an e-goverment",
         description:
-          "Vestibulum eu tortor artett tortor rhoncus porta quis on metus morbi comodo nisi vitae neque aliquam aliquam.",
+          "",
       },
       {
         id: "service3",
         icon: "",
-        title: "More to come",
+        title: "Connect with the Estonian companies behind our e-solutions",
         description:
-          "Aliquam dictum mollis sem sed hendrerit tempus sed class aptent taciti sociosqu litora conubia himenaeos.",
+          "",
       },
     ],
     counters: [
@@ -37,7 +37,7 @@ const Service = () => {
         end: 49,
         title: "Peoples",
         description:
-          "Aliquam egestas vehicula sapien cibus sit amet rutrum dolor molestie.",
+          "It helps people to get easy access for the serivce they want..",
       },
       {
         id: "2",
@@ -46,7 +46,7 @@ const Service = () => {
         end: 76,
         title: "Government",
         description:
-          "Pellentesque habitant morbi malesuada fames ac turpis egestas.",
+          "It Create a dynamic and smoothe work enviroment for government",
       },
       {
         id: "3",
@@ -55,7 +55,7 @@ const Service = () => {
         end: 99,
         title: "System",
         description:
-          "Suspendisse congue risus consequat sapien potitor risus tincidunt.",
+          "Conncetiing every thing together with advanced IT features.",
       },
     ],
   });
@@ -64,25 +64,23 @@ const Service = () => {
       <section className="section bg-services" id="services">
         <Container>
           <Row>
-            <Col lg="12">
-              <div className="title-box text-center">
-                <h3 className="title-heading mt-4">
-                  Presenting Goverment Services Digitally{" "}
-                </h3>
-                <p className="text-muted f-17 mt-3">
-                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae earum rem corporis necessita <br /> fringilla auctor In
-                  eleifend maximus nisi sed vulputate.
-                </p>
-
-                <img src={HomeUrl} height="15" className="mt-3" alt="" />
-              </div>
-            </Col>
+          <Col lg="12" className="mt-5">
+            <div className="title-box text-center">
+              <h3 className="title-heading mt-4">
+                Presenting Goverment Services Digitally{" "}
+              </h3>
+              <p className="text-muted f-17 mt-3">
+                Chad Government presents you different applications for your different needs. <br />
+                In the this system You can access your information anytime and get served anytime in the country eaisly
+              </p>
+            </div>
+          </Col>
           </Row>
-          <Row className="mt-5 pt-4">
+          <Row className="pt-4">
             {/* Render Footer Link */}
             {state.services.map((item: any, key: any) => (
               <Col lg={4} key={key}>
-                <div className="services-box p-4 mt-4">
+                <div className="services-box p-4 mt-4" style={{minHeight : "250px"}}>
                   <div className="services-icon bg-soft-primary">
                     <i className={"mdi text-primary " + item.icon}></i>
                   </div>
@@ -105,12 +103,9 @@ const Service = () => {
                 <p className="text-uppercase">why you need to use the System </p>
                 <h3>It saves everything!</h3>
                 <p className="text-muted mt-3">
-                  Morbi at erat et tortor tempor sodales non eu lacus Donec at
-                  gravida nunc vitae volutpat libero fusce sit amet mi quis
-                  ipsum tempus gravida in quis felis Aliquam fringilla tempus
-                  scelerisque Phasellus viverra tincidunt suscipit. Praesent non
-                  arcu vitae augue aliquam eget vitae Pellentesque sem mauris
-                  porta eget ultrices eros.
+                E-government is an easy way for the public to be more involved in political campaigns. It could increase voter awareness, which could lead to an increase in citizen participation in elections.
+
+It is convenient and cost-effective for businesses, and the public benefits by getting easy access to the most current information available without having to spend time, energy and money to get it.
                 </p>
                 <div className="mt-4 pt-1">
                   <Link to="#" className="btn btn-outline-primary">
@@ -157,5 +152,4 @@ const Service = () => {
     </>
   );
 };
-
 export default Service;

@@ -1,7 +1,7 @@
 import BirthNavBarComponent from "components/Birth/BirthNavBarComponent";
 import React, { useContext, useState } from "react";
 import { Stepper } from 'react-form-stepper';
-import { Col, Row, FormGroup, FormLabel, FormControl, Button, Form } from 'react-bootstrap';
+import { Col, Row, FormGroup, FormLabel, FormControl, Button, Form, Alert } from 'react-bootstrap';
 import { CustomCard } from "components/shared/Card";
 import { bool, boolean } from "yup";
 import { idText } from "typescript";
@@ -12,11 +12,12 @@ import { MasterDataContext } from "App";
 import VisaNavBarComponent from "components/Visa/VisaNavBarComponent";
 import NewVisaApplicationRequest from "models/visa/NewVisaApplicationRequest";
 import { applyVisa } from "service/VisaService";
+import { Loading } from "components/shared/Loading";
 
 export const NewVisaApplicationPage: React.FC = () => {
     const navigoter = useNavigate();
     const { masterData } = useContext(MasterDataContext);
-
+    const [isLoading, setIsLoading] = useState(false);
     const [userState, setUserState] = useState({
         stepperList: [
             {
@@ -480,6 +481,14 @@ export const NewVisaApplicationPage: React.FC = () => {
         ]
     });
 
+    const [userResponseState, setUserResponseState] = useState({
+        isAlartShown: false,
+        applicationId: '',
+        isResponseSuccess : false, 
+        StatusMessage : '',
+        DetailMessage : ''
+    });
+
     const updateVisaInformationInput = (e: string, index: number) => {
         var updatedData = [...userState.vsiaInformationInputs];
         updatedData[index].value = e;
@@ -562,6 +571,8 @@ export const NewVisaApplicationPage: React.FC = () => {
     }
 
     const submitVisaInformation = async () => {
+        setIsLoading(true);
+
         var newVisaApplicationRequest = new NewVisaApplicationRequest();
         newVisaApplicationRequest = {
             visaApplication: {
@@ -617,9 +628,18 @@ export const NewVisaApplicationPage: React.FC = () => {
 
         console.log(newVisaApplicationRequest);
         var response = await applyVisa(newVisaApplicationRequest);
-
+        setIsLoading(false);
         if (response?.status == "success") {
-            navigoter('/VisaLandingPage', { state: { isForCheckStatus: false, passportApplicationResponse: response } });
+            navigoter('/VisaDetailStatusPage', { state: { isForCheckStatus: false, visaApplicationResponse: response } });
+        }
+        else{
+            setUserResponseState({
+                ...userResponseState,
+                DetailMessage : response.message,
+                StatusMessage : `${response.status.charAt(0).toUpperCase()}${response.status.slice(1)}`, 
+                isResponseSuccess : false, 
+                isAlartShown : true,
+            });
         }
     }
     return (<>
@@ -911,11 +931,23 @@ export const NewVisaApplicationPage: React.FC = () => {
                             </Col>
                             <Col xl={8} lg={8} md={8} sm={8}></Col>
                             <Col xl={1} lg={1} md={1} sm={1}>
-                                <Button onClick={handleNext}>{userState.stepIndex >= userState.stepperList.length - 1 ? "Submit" : "Next"}</Button>
+                                <Button onClick={handleNext}>{
+                                        isLoading ? <Loading text={"Loading"} ></Loading> : userState.stepIndex >= userState.stepperList.length - 1 ? "Submit" : "Next"
+                                      }</Button>
                             </Col>
                             <Col xl={1} lg={1} md={1} sm={1}></Col>
                         </Row>
                         <br />
+                        {userResponseState.isAlartShown ?
+                                        <Alert variant={userResponseState.isResponseSuccess ? "success" : "danger"} onClose={() => setUserResponseState({
+                                            ...userResponseState,
+                                            isAlartShown: false
+                                        })} dismissible>
+                                            <Alert.Heading>{userResponseState.StatusMessage} on Applying Your visa</Alert.Heading>
+                                            <p>{userResponseState.DetailMessage}
+                                            </p>
+                                        </Alert> : <></>
+                                    }
                     </CustomCard>
                 </Row>
             </Col>

@@ -76,11 +76,7 @@ export const PassportLandingPage: React.FC = () => {
     });
 
     const checkPassportApplicationStatus = async () => {
-        //var response = await checkPassportStatus();
-
-        //if (response.status == "success") {
         navigoter("/PassportCheckStautsPage");
-        //}
     }
 
     return (<>
@@ -159,9 +155,8 @@ export const PassportLandingPage: React.FC = () => {
                                 <div className="col-sm-6 col-md-3 item">
                                     <h3>Services</h3>
                                     <ul>
-                                        <li><a href="#">New Passprot</a></li>
-                                        <li><a href="#">Check status</a></li>
-                                        <li><a href="#">Information</a></li>
+                                        <li><a href="/PassportNewApplicationPage">New Passprot</a></li>
+                                        <li><a href="/PassportCheckStautsPage">Check status</a></li>
                                     </ul>
                                 </div>
                                 <div className="col-sm-6 col-md-3 item">

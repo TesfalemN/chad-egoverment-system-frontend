@@ -19,22 +19,22 @@ const AllServiceCompo = () => {
           {
             btitle: "Registering Your Business",
             title: "",
-            icon: "mdi-checkbox-marked-circle text-success",
+            icon: "text-success",
           },
           {
             btitle: "Accessing your Inquiries",
             title: "",
-            icon: "mdi-checkbox-marked-circle text-success",
+            icon: "text-success",
           },
           {
             btitle: "Viewing Status of Registration",
             title: "",
-            icon: "mdi-checkbox-marked-circle text-success",
+            icon: "text-success",
           },
           {
             btitle: "Get Your Certificate",
             title: "",
-            icon: "mdi-checkbox-marked-circle text-success",
+            icon: "text-success",
           },
         ],
       },
@@ -50,17 +50,17 @@ const AllServiceCompo = () => {
           {
             btitle: "Apply For Your Passport",
             title: "",
-            icon: "mdi-checkbox-marked-circle text-success",
+            icon: "text-success",
           },
           {
             btitle: "Updating Your Passport inquires",
             title: "",
-            icon: "mdi-checkbox-marked-circle text-success",
+            icon: "text-success",
           },
           {
             btitle: "Check The status of the application",
             title: "",
-            icon: "mdi-checkbox-marked-circle text-success",
+            icon: "text-success",
           },
         ],
       },
@@ -75,20 +75,20 @@ const AllServiceCompo = () => {
         child: [
           {
             btitle: "Apply for Birth Certificate",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            title: "",
+            icon: "text-success",
           },
           {
             btitle: "View the status of the request",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            title: "",
+            icon: "text-success",
           },
           {
             btitle: "Get Your Certificate",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            title: "",
+            icon: "text-success",
           },
-        
+
         ],
       },
       {
@@ -102,20 +102,20 @@ const AllServiceCompo = () => {
         child: [
           {
             btitle: "Apply for Chad VISA from all over the world",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            title: "",
+            icon: "text-success",
           },
           {
             btitle: "View the status of the Application",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            title: "",
+            icon: "text-success",
           },
           {
             btitle: "Get Your VISA",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            title: "",
+            icon: "text-success",
           },
-        
+
         ],
       },
       {
@@ -128,251 +128,204 @@ const AllServiceCompo = () => {
         url: "/Login",
         child: [
           {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            btitle: "Pharmacy Management",
+            title: "",
+            icon: "text-success",
           },
           {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            btitle: "Laboratory Management",
+            title: "",
+            icon: "text-success",
           },
           {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            btitle: "OPD Management",
+            title: "",
+            icon: "text-success",
           },
-        
+
         ],
       },
       {
         id: 5,
-        title: "E Health",
+        title: "National ID Card",
         description:
-          "E Health System for better health for Chad Citizens",
+          "HEalth Systems",
         titlePrimary: false,
         icon: "",
         url: "/Login",
         child: [
           {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            btitle: "Get your National ID",
+            title: "",
+            icon: "text-success",
           },
           {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            btitle: "Watch the status of your request",
+            title: "",
+            icon: "text-success",
           },
           {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            btitle: "Update your ID",
+            title: "",
+            icon: "text-success",
           },
-        
+
         ],
       },
       {
         id: 5,
-        title: "E Health",
+        title: "Custom Services",
         description:
-          "E Health System for better health for Chad Citizens",
+          "Custom Services for Citizens",
         titlePrimary: false,
         icon: "",
         url: "/Login",
         child: [
           {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            btitle: "Import",
+            title: "",
+            icon: "text-success",
           },
           {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            btitle: "Export",
+            title: "",
+            icon: "text-success",
           },
           {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
+            btitle: "Registry",
+            title: "",
+            icon: "text-success",
           },
-        
+
         ],
       },
-      {
-        id: 5,
-        title: "E Health",
-        description:
-          "E Health System for better health for Chad Citizens",
-        titlePrimary: false,
-        icon: "",
-        url: "/Login",
-        child: [
-          {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
-          },
-          {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
-          },
-          {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
-          },
-        
-        ],
-      },
-      {
-        id: 5,
-        title: "E Health",
-        description:
-          "E Health System for better health for Chad Citizens",
-        titlePrimary: false,
-        icon: "",
-        url: "/Login",
-        child: [
-          {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
-          },
-          {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
-          },
-          {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
-          },
-        
-        ],
-      },
-      {
-        id: 5,
-        title: "E Health",
-        description:
-          "E Health System for better health for Chad Citizens",
-        titlePrimary: false,
-        icon: "",
-        url: "/Login",
-        child: [
-          {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
-          },
-          {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
-          },
-          {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
-          },
-        
-        ],
-      },
-      {
-        id: 5,
-        title: "E Health",
-        description:
-          "E Health System for better health for Chad Citizens",
-        titlePrimary: false,
-        icon: "",
-        url: "/Login",
-        child: [
-          {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
-          },
-          {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
-          },
-          {
-            btitle: "Health",
-            title: "#",
-            icon: "mdi-checkbox-marked-circle text-success",
-          },
-        
-        ],
-      },
-      
       {
         id: 6,
-        title: "More Services",
+        title: "e-Land Register",
         description:
-          "Do You want to see more Services, Click in the link below",
+          "E Land Register",
         titlePrimary: false,
         icon: "",
         url: "/Login",
-        child: [         
+        child: [
           {
-            btitle: "Do You want to see more Services, Click in the link below",
-       
-          
+            btitle: "Register land",
+            title: "",
+            icon: "text-success",
           },
-         
-        
+          {
+            btitle: "Transfer a land to other person",
+            title: "",
+            icon: "text-success",
+          },
+          {
+            btitle: "Manage Information",
+            title: "",
+            icon: "text-success",
+          },
+
+        ],
+      },
+      {
+        id: 5,
+        title: "e-Shop",
+        description:
+          "Shopping Systems",
+        titlePrimary: false,
+        icon: "",
+        url: "/Login",
+        child: [
+          {
+            btitle: "Sell Products",
+            title: "",
+            icon: "text-success",
+          },
+          {
+            btitle: "Buy Products",
+            title: "",
+            icon: "text-success",
+          },
+          {
+            btitle: "Manage PRoducts",
+            title: "",
+            icon: "text-success",
+          },
+
+        ],
+      },
+      {
+        id: 5,
+        title: "e-School",
+        description:
+          "E School System for better health for Chad Citizens",
+        titlePrimary: false,
+        icon: "",
+        url: "/Login",
+        child: [
+          {
+            btitle: "Student Management",
+            title: "",
+            icon: "text-success",
+          },
+          {
+            btitle: "Admission",
+            title: "",
+            icon: "text-success",
+          },
+          {
+            btitle: "Course Registration",
+            title: "",
+            icon: "text-success",
+          },
+          {
+            btitle: "Course Offering",
+            title: "",
+            icon: "text-success",
+          },
+
+        ],
+      },
+      {
+        id: 5,
+        title: "e-Tax",
+        description:
+          "Tax Management System for citizens",
+        titlePrimary: false,
+        icon: "",
+        url: "/Login",
+        child: [
+          {
+            btitle: "With Holding",
+            title: "",
+            icon: "text-success",
+          },
+          {
+            btitle: "VAT",
+            title: "",
+            icon: "text-success",
+          },
+          {
+            btitle: "Reverse VAT",
+            title: "",
+            icon: "text-success",
+          },
+          {
+            btitle: "Usage",
+            title: "",
+            icon: "text-success",
+          },
+
         ],
       },
     ],
   });
   return (
     <>
-            <section className="section" id="servicelist">
-        <Container>
-            <h2>Services provided by Chad E-Government System</h2>
-          <Row className="mt-5 pt-4">
-         
-            {/* Render Pricing items */}
-            {state.Servicelist.map((item: any, key: any) => (
-              <Col lg="4" key={key}>
-                <div className="pricing-box mt-4">
-                  {
-                   
-                  }
-
-                  <i className={"h1 mdi " + item.icon}></i>
-                  {item.titlePrimary === true ? (
-                    <h4 className="f-20 text-primary">{item.title}</h4>
-                  ) : (
-                    <h4 className="f-20">{item.title}</h4>
-                  )}
-
-                  <div className="mt-4 pt-2">
-                    <p className="mb-2 f-18">Features</p>
-                    {item.child.map((linkItem: any, linkkey: any) => (
-                      <p className="mb-2" key={linkkey}>
-                        <i
-                          className={"mdi " + linkItem.icon + " f-18 mr-2"}
-                        ></i>
-                        <b>{linkItem.btitle}</b> {linkItem.title}
-                      </p>
-                    ))}
-                  </div>
-                  <div className="mt-4 pt-3">
-                    <Link to={item.url} className="btn btn-primary btn-rounded">
-                      Get Served
-                    </Link>
-                  </div>
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-      <section className="section bg-light bg-features">
+      <section>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <Container>
           <Row className="align-items-center">
             <Col lg={5}>
@@ -386,20 +339,71 @@ const AllServiceCompo = () => {
               <div className="mt-4">
                 <h2>Presenting Goverment Service at your hand</h2>
                 <p className="mt-4 text-muted">
-                  Praesent ut tincidunt massa vel facilisis dui Integer mattis
-                  quis augue in rhoncus Integer mattis enim vel eros bibendum
-                  egestas id laoreet nisi Praesent malesuada eros at bibendum
-                  eleifend Nam nec urna hendrerit interdum risus Donec faucibus
-                  quis magna sit amet laoreet Maecenas finibus semper massa in
-                  finibus est venenatis quis.
+                  Chad Government presents you different applications for your different needs.
+                  In the this system You can access your information anytime and get served anytime in the country eaisly
                 </p>
                 <div className="mt-4">
-                  <Link to="#" className="btn btn-primary">
-                    Explore More
-                  </Link>
                 </div>
               </div>
             </Col>
+          </Row>
+        </Container>
+      </section>
+
+      <section className="section" id="">
+        <Container>
+          <Row className="mt-5 pt-4">
+
+            {/* Render Pricing items */}
+            {state.Servicelist.map((item: any, key: any) => {
+              if (item.isMore) {
+                return (
+                  <Col lg="4" key={key}>
+                    <div className="pricing-box mt-4" style={{ minHeight: "400px", display: "flex", }}>
+                      <div className="mt-3" style={{ marginRight: "auto", marginLeft: "auto", alignSelf: "center" }}>
+                        <Link to={item.url} >
+                          <h4 className="f-20 text-primary on-hover">Explore More <i className="mdi mdi-arrow-right ml-1"></i></h4>
+
+                        </Link>
+                      </div>
+                    </div>
+                  </Col>);
+              }
+              else {
+                return (
+                  <Col lg="4" key={key}>
+                    <div className="pricing-box mt-4" style={{ minHeight: "400px", display: "flex", flexDirection: "column" }}>
+                      <div style={{ display: "block" }}>
+                        <i className={"h1 mdi " + item.icon}></i>
+                        {item.titlePrimary === true ? (
+                          <h4 className="f-20 text-primary">{item.title}</h4>
+                        ) : (
+                          <h4 className="f-20">{item.title}</h4>
+                        )}
+
+                        <div className="mt-4 pt-2">
+                          <p className="mb-2 f-18">Contains</p>
+                          {item.child.map((linkItem: any, linkkey: any) => (
+                            <p className="mb-2" key={linkkey}>
+                              <i
+                                className={"mdi " + linkItem.icon + " f-18 mr-2"}
+                              ></i>
+                              <b>{linkItem.btitle}</b> {linkItem.title}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="mt-4 pt-4" style={{ margin: "auto" }}>
+                        <Link to={item.url} className="btn btn-primary btn-rounded">
+                          Get Served
+                        </Link>
+                      </div>
+                    </div>
+                  </Col>
+                );
+              }
+
+            })}
           </Row>
         </Container>
       </section>

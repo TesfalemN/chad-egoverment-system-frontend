@@ -36,9 +36,11 @@ const CheckBusinessStatus = () => {
   const DisplayData = datas?.businessData?.map((data) => {
     return (
       <tr>
+        <td>{data.applicationID}</td>
         <td>{data.business.business_name}</td>
-        <td>{data.business.date_of_issuance}</td>
         <td>{data.business.nationality}</td>
+        <td>{data.business.date_of_issuance}</td>
+        <td>{data.status}</td>
         <th>
           <Link to={`/BusinessDetailStatusPage/${data.applicationID}`}>
             <Button size="sm" className="me-2" variant="success">
@@ -73,8 +75,10 @@ const CheckBusinessStatus = () => {
                           <tr>
                             <th>Business Name</th>
                             <th>Business Field</th>
-                            <th>Date of Issuance</th>
                             <th>Nationality</th>
+                            <th>Date of Issuance</th>
+                            <th>Status</th>
+                            <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>{DisplayData}</tbody>

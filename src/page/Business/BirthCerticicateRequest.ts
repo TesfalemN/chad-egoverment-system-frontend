@@ -1,16 +1,16 @@
 export default class BirthCerticicateRequest {
     birthCertificate = {
-        first_name: "",
-        middle_name: "",
-        last_name: "",
-        date_of_birth: "",
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        dateOfBirth: "",
         gender: "",
         nationality: "",
-        phone_number: "",
+        phoneNumber: "",
         email: "",
-        birth_place: {
+        birthPlace: {
             country: "",
-            province: "",
+            province : "",
             subProvince: "",
             birthType: "",
             hospitalName: ""
