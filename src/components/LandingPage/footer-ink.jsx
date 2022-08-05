@@ -6,7 +6,7 @@ const FooterLink = () => {
       <Col lg={12}>
         <div className="text-center">
           <p className="text-muted mb-0">
-            {new Date().getFullYear()} © RCT STWMB. Develop by RCT
+            {new Date().getFullYear()} © Develop by RCT
           </p>
         </div>
       </Col>

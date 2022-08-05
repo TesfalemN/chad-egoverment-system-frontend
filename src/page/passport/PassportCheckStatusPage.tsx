@@ -1,26 +1,42 @@
 
 import { PassportNavBarComponent } from "components/Passport/PassportNavBarComponent";
+import { Loading } from "components/shared/Loading";
 import React, { useState } from "react"
-import { Card, Col, Row, FormGroup, FormLabel, FormControl, Button, Form } from "react-bootstrap";
+import { Card, Col, Row, FormGroup, FormLabel, FormControl, Button, Form, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { checkPassportStatus } from "service/PassportService";
 
 export const PassportCheckStautsPage: React.FC = () => {
     const navigoter = useNavigate();
-
+    const [isLoading, setIsLoading] = useState(false);
+    const [userState, setUserState] = useState({
+        isAlartShown: false,
+        isResponseSuccess: false,
+        StatusMessage: '',
+        DetailMessage: ''
+    });
     const [applicationId, setApplicationId] = useState("");
 
     const checkPassportApplicationStatus = async () => {
-
+        setIsLoading(true);
         var response = await checkPassportStatus({
             applicationID: applicationId
         });
 
-        console.log(response);
-
         if (response.status == "success") {
             navigoter("/PassportDetailStatusPage", { state: { isForCheckStatus: true, passportStatusResponse: response } });
         }
+        else {
+            setUserState({
+                ...userState,
+                DetailMessage: response.message,
+                StatusMessage: `${response.status.charAt(0).toUpperCase()}${response.status.slice(1)}`,
+                isResponseSuccess: false,
+                isAlartShown: true,
+            });
+        }
+
+        setIsLoading(false);
     }
 
     return (<> <PassportNavBarComponent />
@@ -57,11 +73,24 @@ export const PassportCheckStautsPage: React.FC = () => {
 
                                     </Row>
                                     <Row><Col xl={2} lg={2} md={2} sm={2}></Col>
-                                    <Col xl={8} lg={8} md={8} sm={8}>
-                                    <Button style={{minWidth: "100%"}} onClick={checkPassportApplicationStatus} className="mt-4">Find My Application</Button>
+                                        <Col xl={8} lg={8} md={8} sm={8}>
+                                            <Button style={{ minWidth: "100%" }} onClick={checkPassportApplicationStatus} className="mt-4">
+                                                {isLoading ? <Loading text="Finding your Application"></Loading> : "Find My Application"}
+                                            </Button>
 
-                                    </Col>
+                                        </Col>
                                     </Row>
+                                    <br />
+                                    {userState.isAlartShown ?
+                                        <Alert variant={userState.isResponseSuccess ? "success" : "danger"} onClose={() => setUserState({
+                                            ...userState,
+                                            isAlartShown: false
+                                        })} dismissible>
+                                            <Alert.Heading>{userState.StatusMessage} on finding Your passport</Alert.Heading>
+                                            <p>{userState.DetailMessage}
+                                            </p>
+                                        </Alert> : <></>
+                                    }
                                     <div className="title-box text-center mt-4">
 
                                     </div>

@@ -13,6 +13,7 @@ const Footer = () => {
       <footer className="section bg-light bg-footer pb-5">
         <Container>
           <Row>
+            <Col lg={1}></Col>
             <Col lg={4}>
               <div className="footer-info mt-4">
                 <h4>Chad E-Government System</h4>

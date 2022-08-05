@@ -1,7 +1,7 @@
 import PassportNavBarComponent from "components/Passport/PassportNavBarComponent";
 import React, { useContext, useState } from "react";
 import { Stepper } from 'react-form-stepper';
-import { Col, Row, FormGroup, FormLabel, FormControl, Button, Form } from 'react-bootstrap';
+import { Col, Row, FormGroup, FormLabel, FormControl, Button, Form, Alert } from 'react-bootstrap';
 import { CustomCard } from "components/shared/Card";
 import { bool, boolean, string } from "yup";
 import { idText } from "typescript";
@@ -10,6 +10,7 @@ import { applyPassport } from "service/PassportService";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MasterDataContext } from "App";
 import MasterDataResponse from "models/masterData/masterData";
+import { Loading } from "components/shared/Loading";
 
 interface PassportNewApplicationPageProps {
     isNewPassport?: boolean,
@@ -271,9 +272,9 @@ export const PassportNewApplicationPage: React.FC<PassportNewApplicationPageProp
                 type: 'tel',
                 value: '',
                 formType: "phoneNumber",
-                options: masterData.countryPhoneCodeLists[0].countryPhoneCodeList.map((e) =>({
-                        name : e.countryName, 
-                        value:  `${e.countryPhoneCode}`
+                options: masterData.countryPhoneCodeLists[0].countryPhoneCodeList.map((e) => ({
+                    name: e.countryName,
+                    value: `${e.countryPhoneCode}`
                 })),
                 disabled: false, onChange: (value: string, index: number) => {
                     updateContactInformationInput(value, index)
@@ -518,6 +519,15 @@ export const PassportNewApplicationPage: React.FC<PassportNewApplicationPageProp
         ]
     });
 
+    const [userResponseState, setUserResponseState] = useState({
+        isAlartShown: false,
+        applicationId: '',
+        isResponseSuccess: false,
+        StatusMessage: '',
+        DetailMessage: ''
+    });
+    const [isLoading, setIsLoading] = useState(false);
+
     const updatePersonalInformationInput = (e: string, index: number) => {
         var updatedData = [...userState.personInformationInputs];
         updatedData[index].value = e;
@@ -589,13 +599,14 @@ export const PassportNewApplicationPage: React.FC<PassportNewApplicationPageProp
     }
 
     const submitPassportInformation = async () => {
+        setIsLoading(true);
         var passportApplicationReqeust = new PassportApplicationRequest();
         passportApplicationReqeust = {
             type: state.isUpdatePassport ? "update" :
-            state.isExpiredPassport ? "expired" :
-                state.isPassportPageRunout ? "runout" :
-                    state.isPassportStolenOrLost ? "damaged" : "new"
-                    ,
+                state.isExpiredPassport ? "expired" :
+                    state.isPassportPageRunout ? "runout" :
+                        state.isPassportStolenOrLost ? "damaged" : "new"
+            ,
             personalInformation: {
                 first_name: userState.personInformationInputs[0].value,
                 middle_name: userState.personInformationInputs[1].value,
@@ -633,9 +644,17 @@ export const PassportNewApplicationPage: React.FC<PassportNewApplicationPageProp
 
         console.log(passportApplicationReqeust);
         var response = await applyPassport(passportApplicationReqeust);
-
+        setIsLoading(false);
         if (response?.status == "success") {
             navigoter('/PassportDetailStatusPage', { state: { isForCheckStatus: false, passportApplicationResponse: response } });
+        } else {
+            setUserResponseState({
+                ...userResponseState,
+                DetailMessage: response.message,
+                StatusMessage: `${response.status.charAt(0).toUpperCase()}${response.status.slice(1)}`,
+                isResponseSuccess: false,
+                isAlartShown: true,
+            });
         }
     }
     return (<>
@@ -867,13 +886,24 @@ export const PassportNewApplicationPage: React.FC<PassportNewApplicationPageProp
                             </Col>
                             <Col xl={8} lg={8} md={8} sm={8}></Col>
                             <Col xl={1} lg={1} md={1} sm={1}>
-                                <Button onClick={handleNext}>{userState.stepIndex >= userState.stepperList.length - 1 ? "Submit" : "Next"}</Button>
+                                <Button onClick={handleNext}>{ isLoading ? <Loading text={"Loading"} ></Loading> : userState.stepIndex >= userState.stepperList.length - 1 ? "Submit" : "Next"}</Button>
                             </Col>
                             <Col xl={1} lg={1} md={1} sm={1}></Col>
                         </Row>
                         <br />
                     </CustomCard>
                 </Row>
+                <br />
+                {userResponseState.isAlartShown ?
+                    <Alert variant={userResponseState.isResponseSuccess ? "success" : "danger"} onClose={() => setUserResponseState({
+                        ...userResponseState,
+                        isAlartShown: false
+                    })} dismissible>
+                        <Alert.Heading>{userResponseState.StatusMessage} on Applying Your Passport</Alert.Heading>
+                        <p>{userResponseState.DetailMessage}
+                        </p>
+                    </Alert> : <></>
+                }
             </Col>
             <Col xl={3} lg={3} md={3} sm={3}>
                 <CustomCard >

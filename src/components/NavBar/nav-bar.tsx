@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import logodark from "../../assets/images/logo-dark.png";
 import logolight from "../../assets/images/logo-light.png";
-
+import Img from "../../assets/images/features/image1.jpg";
 import ScrollspyNav from "./scrollspy";
 
 const NavBar = ({ ...props }) => {
@@ -23,6 +23,7 @@ const NavBar = ({ ...props }) => {
 
   return (
     <>
+
       <Navbar
         expand="lg"
         fixed="top"
@@ -30,7 +31,15 @@ const NavBar = ({ ...props }) => {
         id="navbar"
       >
         <Container>
-          {/* LOGO */}
+        <Navbar.Brand href="#home">
+            <img
+              alt=""
+              src={Img}
+              width="50"
+              height="50"
+              className="d-inline-block align-top"
+            />
+          </Navbar.Brand>
          
           <Navbar.Toggle onClick={toggle}>
             <i className="mdi mdi-menu"></i>

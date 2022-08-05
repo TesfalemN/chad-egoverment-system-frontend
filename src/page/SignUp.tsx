@@ -224,38 +224,28 @@ const SignUp = () => {
                                     <FormLabel htmlFor="martial_status">
                                       Martial Status
                                     </FormLabel>
-                                    <FormControl
-                                      type="text"
-                                      className="form-control"
-                                      name="martial_status"
-                                      value={formik.values.martial_status}
-                                      onChange={formik.handleChange}
-                                      id="martial_status"
-                                      placeholder="Enter Enter Your Martial Status"
-                                      isInvalid={!!formik.errors.martial_status}
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                      {formik.errors.martial_status}
-                                    </Form.Control.Feedback>
+                                    <Form.Select aria-label="Default select example" name="martial_status">
+                                       
+                                        <option value="Single">Single</option>
+                                        <option value="Married">Married</option>
+                                        <option value="Divorced">Divorced</option>
+                                        <option value="Widow">Widow</option>
+                                      </Form.Select>
+              
+                                   
                                   </FormGroup>
                                   <FormGroup>
                                     <FormLabel htmlFor="gender">
                                       Gender
                                     </FormLabel>
-                                    <FormControl
-                                      type="text"
-                                      name="gender"
-                                      value={formik.values.gender}
-                                      onChange={formik.handleChange}
-                                      className="form-control"
-                                      id="gender"
-                                      placeholder="Enter Your Gender "
-                                      isInvalid={!!formik.errors.gender}
-                                    />
+                                    <Form.Select aria-label="Default select example" name="gender">
+                                       
+                                       <option value="Male">Male</option>
+                                       <option value="Female">Female</option>
+                                   
+                                     </Form.Select>
 
-                                    <Form.Control.Feedback type="invalid">
-                                      {formik.errors.gender}
-                                    </Form.Control.Feedback>
+                                
                                   </FormGroup>
                                  
                                 
@@ -354,7 +344,7 @@ const SignUp = () => {
                                       Date Of Birth
                                     </FormLabel>
                                     <FormControl
-                                      type="text"
+                                      type="date"
                                       className="form-control"
                                       name="date_of_birth"
                                       value={formik.values.date_of_birth}

@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 export const  PassportNavBarComponent : React.FC = () => {
   return (
     <>
-      <Navbar bg="light shadow" variant="light" sticky="top">
+      <Navbar bg="shadow" variant="light" sticky="top">
         <Container>
           <Navbar.Brand href="#home">
             <img

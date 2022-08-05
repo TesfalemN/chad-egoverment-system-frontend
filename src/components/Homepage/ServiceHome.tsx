@@ -170,12 +170,7 @@ const ServiceHome = () => {
               <div className="mt-4">
                 <h2>Presenting Goverment Service at your hand</h2>
                 <p className="mt-4 text-muted">
-                  Praesent ut tincidunt massa vel facilisis dui Integer mattis
-                  quis augue in rhoncus Integer mattis enim vel eros bibendum
-                  egestas id laoreet nisi Praesent malesuada eros at bibendum
-                  eleifend Nam nec urna hendrerit interdum risus Donec faucibus
-                  quis magna sit amet laoreet Maecenas finibus semper massa in
-                  finibus est venenatis quis.
+                Chad Government presents you different applications for your different needs. In the this system You can access your information anytime and get served anytime in the country eaisly
                 </p>
                 <div className="mt-4">
                   <Link to="#" className="btn btn-primary">

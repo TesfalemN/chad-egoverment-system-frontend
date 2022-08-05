@@ -1,5 +1,6 @@
 export default class PassportStatusResponse {
     status = "";
+    message = "";
     passportApplication = {
         _id: "",
         type: "",
